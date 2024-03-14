@@ -1,0 +1,9 @@
+export { default as Login } from "@/pages/Login";
+export { default as Register } from "@/pages/Register";
+export { default as Home } from "@/pages/Home";
+export { default as Dashboard } from "@/pages/Dashboard";
+export { default as Bookings } from "@/pages/Bookings";
+export { default as Allotment } from "@/pages/Allotment";
+export { default as Payment } from "@/pages/Payment";
+export { default as UserManagement } from "@/pages/UserManagement";
+export { default as NotFound } from "@/pages/NotFound";
