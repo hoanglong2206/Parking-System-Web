@@ -15,9 +15,9 @@ import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 const DropdownUser: React.FC = () => {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="flex items-center justify-center gap-4">
+      <DropdownMenuTrigger className="flex items-center justify-center gap-4 outline-none">
         <span className="hidden text-right lg:block">
-          <span className="block text-sm font-medium text-black dark:text-white">
+          <span className="block text-base font-medium text-black dark:text-white">
             John Doe
           </span>
           <span className="block text-xs">UX Designer</span>
