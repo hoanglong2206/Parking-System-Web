@@ -1,6 +1,5 @@
 import { Routes, Route } from "react-router-dom";
 import {
-  Bookings,
   Dashboard,
   Home,
   Login,
@@ -8,6 +7,7 @@ import {
   Payment,
   UserManagement,
   Allotment,
+  Equipments,
   NotFound,
 } from "@/pages";
 import { AdminLayout } from "@/layouts";
@@ -20,10 +20,10 @@ function App() {
       <Route path="/auth/register" element={<Register />} />
       <Route path="app/admin" element={<AdminLayout />}>
         <Route index element={<Dashboard />} />
-        <Route path="bookings" element={<Bookings />} />
         <Route path="allotment" element={<Allotment />} />
         <Route path="payment" element={<Payment />} />
         <Route path="user-management" element={<UserManagement />} />
+        <Route path="equipment" element={<Equipments />} />
       </Route>
       <Route path="*" element={<NotFound />} />
     </Routes>

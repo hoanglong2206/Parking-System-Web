@@ -3,7 +3,6 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
   Banknote,
-  Book,
   ChevronLeft,
   CircleParking,
   LayoutDashboard,
@@ -102,17 +101,7 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, setSidebarOpen }) => {
                 Allotment
               </NavLink>
             </li>
-            <li>
-              <NavLink
-                to="/app/admin/bookings"
-                className={`flex items-center gap-2.5 rounded-sm py-1.5 px-4 font-medium  hover:bg-neutral-500/10 duration-75 ease-in-out  ${
-                  pathname.includes("bookings") && "bg-neutral-500/10"
-                }`}
-              >
-                <Book className="w-5 h-5" />
-                Bookings
-              </NavLink>
-            </li>
+
             <li>
               <NavLink
                 to="/app/admin/user-management"
