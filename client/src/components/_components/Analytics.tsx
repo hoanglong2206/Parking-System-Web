@@ -1,4 +1,3 @@
-import React from "react";
 import { ChartAnalytics, PieAnalytics } from "@/components";
 import {
   Card,
