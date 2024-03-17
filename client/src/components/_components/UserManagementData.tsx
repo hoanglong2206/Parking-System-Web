@@ -14,6 +14,7 @@ export type UserManagement = {
   id: string;
   email: string;
   name: string;
+  gender: "Male" | "Female" | "Other";
   age: number;
   joinDate: string;
 };
@@ -56,6 +57,24 @@ export const columnsUser: ColumnDef<UserManagement>[] = [
       <div className="text-center font-medium truncate">
         {row.getValue("name")}
       </div>
+    ),
+  },
+  {
+    accessorKey: "gender",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          className="w-full ml-2"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Gender
+          <ChevronsUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+    cell: ({ row }) => (
+      <div className="text-center font-medium">{row.getValue("gender")}</div>
     ),
   },
   {
