@@ -23,3 +23,5 @@ export type { Payment } from "@/components/_components/PaymentData";
 export { columnsPayment } from "@/components/_components/PaymentData";
 export type { UserManagement } from "@/components/_components/UserManagementData";
 export { columnsUser } from "@/components/_components/UserManagementData";
+export { default as CarSlotItem } from "@/components/_components/CarSlotItem";
+export { default as CarSlotList } from "@/components/_components/CarSlotList";
