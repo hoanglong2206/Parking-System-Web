@@ -7,3 +7,7 @@ export { default as Payment } from "@/pages/Payment";
 export { default as UserManagement } from "@/pages/UserManagement";
 export { default as Equipments } from "@/pages/Equipments";
 export { default as NotFound } from "@/pages/NotFound";
+export { default as Messages } from "@/pages/Messages";
+export { default as ProfileAdmin } from "@/pages/ProfileAdmin";
+export { default as Settings } from "@/pages/Settings";
+export { default as InfoCarSlot } from "@/pages/InfoCarSlot";

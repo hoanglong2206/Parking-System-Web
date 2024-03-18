@@ -7,6 +7,7 @@ import {
   CircleParking,
   LayoutDashboard,
   LogOut,
+  MessageSquare,
   Settings,
   Shapes,
   UserRound,
@@ -133,6 +134,17 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, setSidebarOpen }) => {
               >
                 <Shapes className="w-5 h-5" />
                 Equipments
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/app/admin/messages"
+                className={`flex items-center gap-2.5 rounded-sm py-1.5 px-4 font-medium  hover:bg-neutral-500/10 duration-75 ease-in-out  ${
+                  pathname.includes("messages") && "bg-neutral-500/10"
+                }`}
+              >
+                <MessageSquare className="w-5 h-5" />
+                Messages
               </NavLink>
             </li>
           </ul>

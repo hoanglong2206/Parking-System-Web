@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -34,7 +34,7 @@ const DropdownUser: React.FC = () => {
         <DropdownMenuSeparator />
         <DropdownMenuGroup className="space-y-1">
           <DropdownMenuItem>
-            <Link to="/profile" className="flex items-center gap-2.5">
+            <Link to="profile" className="flex items-center gap-2.5">
               <User2 className="w-5 h-5" />
               <span className="text-base font-medium text-black dark:text-white">
                 Profile
@@ -42,7 +42,7 @@ const DropdownUser: React.FC = () => {
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <Link to="/profile" className="flex items-center gap-2.5">
+            <Link to="#" className="flex items-center gap-2.5">
               <NotebookTabs className="w-5 h-5" />
               <span className="text-base font-medium text-black dark:text-white">
                 Contacts
@@ -51,7 +51,7 @@ const DropdownUser: React.FC = () => {
           </DropdownMenuItem>
 
           <DropdownMenuItem>
-            <Link to="/settings" className="flex items-center gap-2.5">
+            <Link to="settings" className="flex items-center gap-2.5">
               <Settings className="w-5 h-5" />
               <span className="text-base font-medium text-black dark:text-white">
                 Settings
