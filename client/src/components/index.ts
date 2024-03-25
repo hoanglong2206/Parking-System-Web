@@ -1,27 +1,24 @@
-export { default as DarkModeButton } from "@/components/_components/DarkModeButton";
-export { default as DropdownMessage } from "@/components/_components/DropdownMessage";
-export { default as DropdownNotification } from "@/components/_components/DropdownNotification";
-export { default as DropdownUser } from "@/components/_components/DropdownUser";
-export { default as Header } from "@/components/_components/Header";
-export { default as Sidebar } from "@/components/_components/Sidebar";
-export { default as Logo } from "@/components/_components/Logo";
+export { default as DarkModeButton } from "@/components/custom/DarkModeButton";
+export { default as DropdownMessage } from "@/components/custom/DropdownMessage";
+export { default as DropdownNotification } from "@/components/custom/DropdownNotification";
+export { default as DropdownUser } from "@/components/custom/DropdownUser";
+export { default as Header } from "@/components/custom/Header";
+export { default as Sidebar } from "@/components/custom/Sidebar";
+export { default as Logo } from "@/components/custom/Logo";
 
-export { default as Overview } from "@/components/_components/Overview";
-export { default as Analytics } from "@/components/_components/Analytics";
-export {
-  ChartOverview,
-  PieOverview,
-} from "@/components/_components/OverviewData";
+export { default as Overview } from "@/components/custom/Overview";
+export { default as Analytics } from "@/components/custom/Analytics";
+export { ChartOverview, PieOverview } from "@/components/custom/OverviewData";
 export {
   ChartAnalytics,
   PieAnalytics,
-} from "@/components/_components/AnalyticsData";
-export { default as PaymentTable } from "@/components/_components/PaymentTable";
-export { default as UserManagementTable } from "@/components/_components/UserManagementTable";
+} from "@/components/custom/AnalyticsData";
+export { default as PaymentTable } from "@/components/custom/PaymentTable";
+export { default as UserManagementTable } from "@/components/custom/UserManagementTable";
 
-export type { Payment } from "@/components/_components/PaymentData";
-export { columnsPayment } from "@/components/_components/PaymentData";
-export type { UserManagement } from "@/components/_components/UserManagementData";
-export { columnsUser } from "@/components/_components/UserManagementData";
-export { default as CarSlotItem } from "@/components/_components/CarSlotItem";
-export { default as CarSlotList } from "@/components/_components/CarSlotList";
+export type { Payment } from "@/components/custom/PaymentData";
+export { columnsPayment } from "@/components/custom/PaymentData";
+export type { UserManagement } from "@/components/custom/UserManagementData";
+export { columnsUser } from "@/components/custom/UserManagementData";
+export { default as CarSlotItem } from "@/components/custom/CarSlotItem";
+export { default as CarSlotList } from "@/components/custom/CarSlotList";
