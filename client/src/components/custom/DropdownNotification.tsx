@@ -24,7 +24,7 @@ const DropdownNotification: React.FC = () => {
           size="icon"
           className="rounded-full focus-visible:ring-0 focus-visible:ring-offset-0"
         >
-          <span className="absolute top-0.5 -right-[1px] z-1 h-2 w-2 rounded-full bg-[#DC3545]">
+          <span className="absolute top-0.5 -right-0 z-1 h-2 w-2 rounded-full bg-[#DC3545]">
             <span className="absolute right-0 -z-1 inline-flex h-full w-full animate-ping rounded-full bg-[#DC3545] opacity-75"></span>
           </span>
           <Bell className="h-5 w-5" />
