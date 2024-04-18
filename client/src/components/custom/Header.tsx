@@ -26,6 +26,7 @@ const Header: React.FC<HeaderProps> = ({ sidebarOpen, setSidebarOpen }) => {
                 setSidebarOpen(!sidebarOpen);
               }}
               size="icon"
+              variant={"ghost"}
             >
               <Menu className="w-6 h-6" />
             </Button>

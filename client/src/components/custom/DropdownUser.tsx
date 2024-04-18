@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,7 +12,7 @@ import logo from "@/assets/react.svg";
 import { NotebookTabs, Settings, User2 } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 
-const DropdownUser: React.FC = () => {
+const DropdownUser = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="flex items-center justify-center gap-4 outline-none">
@@ -23,7 +23,7 @@ const DropdownUser: React.FC = () => {
           <span className="block text-xs">UX Designer</span>
         </span>
 
-        <Avatar>
+        <Avatar className="p-1 border border-slate-200 dark:border-slate-700">
           <AvatarImage src={logo} alt="Avatar" />
           <AvatarFallback>JD</AvatarFallback>
         </Avatar>

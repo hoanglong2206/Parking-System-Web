@@ -5,6 +5,13 @@ export { default as DropdownUser } from "@/components/custom/DropdownUser";
 export { default as Header } from "@/components/custom/Header";
 export { default as Sidebar } from "@/components/custom/Sidebar";
 export { default as Logo } from "@/components/custom/Logo";
+export { default as Navbar } from "@/components/custom/Navbar";
+export { default as SearchBar } from "@/components/custom/Searchbar";
+export { default as SidebarNav } from "@/components/custom/SidebarNav";
+export { default as Footer } from "@/components/custom/Footer";
+export { default as Banner } from "@/components/custom/Banner";
+export { default as ContentHome } from "@/components/custom/ContentHome";
+export { default as Container } from "@/components/custom/Container";
 
 export { default as Overview } from "@/components/custom/Overview";
 export { default as Analytics } from "@/components/custom/Analytics";
@@ -22,3 +29,6 @@ export type { UserManagement } from "@/components/custom/UserManagementData";
 export { columnsUser } from "@/components/custom/UserManagementData";
 export { default as CarSlotItem } from "@/components/custom/CarSlotItem";
 export { default as CarSlotList } from "@/components/custom/CarSlotList";
+
+export { default as CarouselBlog } from "@/components/custom/CarouselBlog";
+export { default as BlogCard } from "@/components/custom/BlogCard";
