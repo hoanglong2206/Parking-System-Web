@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { MessageCircleMore } from "lucide-react";
 
-const DropdownMessage: React.FC = () => {
+const DropdownMessage = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger

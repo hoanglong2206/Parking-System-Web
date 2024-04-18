@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useCallback } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
@@ -26,6 +26,15 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, setSidebarOpen }) => {
 
   const trigger = useRef<any>(null);
   const sidebar = useRef<any>(null);
+
+  const handleResize = useCallback(() => {
+    if (window.innerWidth > 1024) setSidebarOpen(false);
+  }, [setSidebarOpen]);
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [handleResize]);
 
   useEffect(() => {
     const clickHandler = ({ target }: MouseEvent) => {

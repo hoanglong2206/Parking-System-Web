@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
@@ -12,7 +11,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Bell } from "lucide-react";
 
-const DropdownNotification: React.FC = () => {
+const DropdownNotification = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger

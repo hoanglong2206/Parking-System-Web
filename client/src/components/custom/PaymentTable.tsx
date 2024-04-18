@@ -112,7 +112,7 @@ const data: Payment[] = [
   },
 ];
 
-const PaymentTable: React.FC = () => {
+const PaymentTable = () => {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
