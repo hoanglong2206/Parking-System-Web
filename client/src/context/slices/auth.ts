@@ -6,8 +6,10 @@ export interface userInfo {
   username: string;
   email: string;
   photo: string;
+  birthday: string;
   gender: string;
   role: string;
+  createdAt: string;
 }
 
 export interface AuthState {
@@ -27,7 +29,9 @@ export const initialStateAuth: AuthState = {
         email: "",
         gender: "",
         photo: "",
+        birthday: "",
         role: "",
+        createdAt: "",
       },
   timeExpire: localStorage.getItem("timeExpire")
     ? JSON.parse(localStorage.getItem("timeExpire") || "")
@@ -70,11 +74,13 @@ export const authSlice = createSlice({
         token: "",
         user: {
           _id: "",
+          username: "",
           email: "",
           photo: "",
-          username: "",
+          birthday: "",
           gender: "",
           role: "",
+          createdAt: "",
         },
       };
     },

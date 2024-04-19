@@ -31,6 +31,10 @@ const userSchema = new mongoose.Schema(
       enum: ["male", "female", "other"],
       default: "other",
     },
+    birthday: {
+      type: Date,
+      default: Date.now(),
+    },
     password: {
       type: String,
       required: [true, "Please provide a password"],
@@ -54,6 +58,10 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: true,
       select: false,
+    },
+    createAt: {
+      type: Date,
+      default: Date.now(),
     },
   },
   {

@@ -8,10 +8,12 @@ import axios, {
 
 const customAxios: AxiosInstance = axios.create({
   baseURL: "http://localhost:3000/api/",
+  headers: {
+    "Content-Type": "application/json",
+    Accept: "application/json",
+  },
+  withCredentials: true,
 });
-
-customAxios.defaults.withCredentials = true;
-customAxios.defaults.headers.post["Content-Type"] = "application/json";
 
 customAxios.interceptors.request.use(
   function (config: AxiosRequestConfig) {

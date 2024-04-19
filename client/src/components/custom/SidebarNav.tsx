@@ -3,8 +3,8 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
   ChevronLeft,
+  CircleParking,
   Home,
-  ShoppingBag,
   SquareArrowOutUpRight,
 } from "lucide-react";
 import { Icons } from "@/utils/icon";
@@ -95,13 +95,13 @@ const SidebarNav = ({ sidebarOpen, setSidebarOpen }: SidebarNavProps) => {
           </li>
           <li>
             <NavLink
-              to="/shop"
+              to="/parking"
               className={`flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium  hover:bg-neutral-500/10 duration-75 ease-in-out  ${
-                pathname.includes("shop") && "bg-neutral-500/10"
+                pathname.includes("parking") && "bg-neutral-500/10"
               }`}
             >
-              <ShoppingBag className="w-5 h-5" />
-              Store
+              <CircleParking className="w-5 h-5" />
+              Parking
             </NavLink>
           </li>
 

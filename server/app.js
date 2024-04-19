@@ -4,6 +4,7 @@ const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
+const path = require("path");
 
 const app = express();
 
@@ -28,10 +29,14 @@ app.use(function (req, _res, next) {
   const method = req.method;
   console.log(`URL: ${url}`);
   console.log(`Method: ${method}`);
-
   next();
 });
-
+app.use(function (req, _res, next) {
+  req.headers["if-none-match"] = "no-match-for-this";
+  next();
+});
 app.use("/api/user", userRoute);
+
+// app.use(express.static(path.join(__dirname, "../client/src/assets")));
 
 module.exports = app;

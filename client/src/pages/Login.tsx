@@ -22,7 +22,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Eye, EyeOff } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/context/store/store";
 import { toast } from "react-toastify";
@@ -48,6 +48,7 @@ const Login = () => {
 
   const dispatch = useDispatch();
   const loader = useSelector((state: RootState) => state.loader);
+  const user = useSelector((state: RootState) => state.auth);
   const navigate: NavigateFunction = useNavigate();
 
   const form = useForm<LoginFormValues>({
@@ -60,7 +61,7 @@ const Login = () => {
       dispatch(showLoader());
       const response = await customAxios.post("/user/login", data);
       dispatch(hideLoader());
-      if (response.status === 200) {
+      if (response.data.status === "success") {
         toast.success(response.data.message);
         dispatch(
           login({
@@ -76,6 +77,19 @@ const Login = () => {
       toast.error(error.response.data.message);
     }
   };
+
+  useEffect(() => {
+    const checkIsLoggedIn = () => {
+      if (user.token) {
+        navigate("/");
+      }
+    };
+    checkIsLoggedIn();
+
+    return () => {
+      checkIsLoggedIn();
+    };
+  }, [user, navigate]);
   return (
     <div className="w-full flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8 bg-gray-100">
       {loader.isLoading ? (

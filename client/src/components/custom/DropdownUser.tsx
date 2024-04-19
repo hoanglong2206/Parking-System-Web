@@ -8,13 +8,21 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { NotebookTabs, Settings, User2 } from "lucide-react";
+import {
+  BookUser,
+  LayoutDashboard,
+  NotebookTabs,
+  Settings,
+  User2,
+} from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/context/store/store";
 import customAxios from "@/utils/customAxios";
 import { hideLoader, showLoader } from "@/context/slices/loader";
 import { logout } from "@/context/slices/auth";
+import { firstLetterUppercase } from "@/lib/utils";
+import { Badge } from "../ui/badge";
 
 const DropdownUser = () => {
   const user = useSelector((state: RootState) => state.auth.user);
@@ -38,9 +46,21 @@ const DropdownUser = () => {
       <DropdownMenuTrigger className="flex items-center justify-center gap-4 outline-none">
         <span className="hidden text-right lg:block">
           <span className="block text-base font-medium text-black dark:text-white">
-            {user.username}
+            {firstLetterUppercase(user.username)}
           </span>
-          <span className="block text-xs">{user.role}</span>
+          <Badge
+            className={`
+            ${
+              user.role === "admin"
+                ? "bg-red-400 hover:bg-red-400/90"
+                : "bg-green-500 hover:bg-green-500/90"
+            }
+            text-white px-2 
+          
+          `}
+          >
+            {user.role}
+          </Badge>
         </span>
 
         <Avatar className="border border-slate-300 dark:border-slate-700">
@@ -53,31 +73,59 @@ const DropdownUser = () => {
         <DropdownMenuLabel className="text-base">My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup className="space-y-1">
-          <DropdownMenuItem>
-            <Link to="profile" className="flex items-center gap-2.5">
-              <User2 className="w-5 h-5" />
-              <span className="text-base font-medium text-black dark:text-white">
-                Profile
-              </span>
-            </Link>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            <Link to="#" className="flex items-center gap-2.5">
-              <NotebookTabs className="w-5 h-5" />
-              <span className="text-base font-medium text-black dark:text-white">
-                Contacts
-              </span>
-            </Link>
-          </DropdownMenuItem>
-
-          <DropdownMenuItem>
-            <Link to="settings" className="flex items-center gap-2.5">
-              <Settings className="w-5 h-5" />
-              <span className="text-base font-medium text-black dark:text-white">
-                Settings
-              </span>
-            </Link>
-          </DropdownMenuItem>
+          {user.role === "admin" ? (
+            <>
+              <DropdownMenuItem>
+                <Link to="/app/admin" className="flex items-center gap-2.5">
+                  <LayoutDashboard className="w-5 h-5" />
+                  <span className="text-base font-medium text-black dark:text-white">
+                    Admin
+                  </span>
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link to="#" className="flex items-center gap-2.5">
+                  <BookUser className="w-5 h-5" />
+                  <span className="text-base font-medium text-black dark:text-white">
+                    Contacts
+                  </span>
+                </Link>
+              </DropdownMenuItem>
+            </>
+          ) : (
+            <>
+              <DropdownMenuItem>
+                <Link to="/account" className="flex items-center gap-2.5">
+                  <User2 className="w-5 h-5" />
+                  <span className="text-base font-medium text-black dark:text-white">
+                    Profile
+                  </span>
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link
+                  to="/account/bookings"
+                  className="flex items-center gap-2.5"
+                >
+                  <NotebookTabs className="w-5 h-5" />
+                  <span className="text-base font-medium text-black dark:text-white">
+                    Bookings
+                  </span>
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link
+                  to="/account/settings"
+                  className="flex items-center gap-2.5"
+                >
+                  <Settings className="w-5 h-5" />
+                  <span className="text-base font-medium text-black dark:text-white">
+                    Settings
+                  </span>
+                </Link>
+              </DropdownMenuItem>
+            </>
+          )}
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem

@@ -60,7 +60,7 @@ const Home = () => {
           </CarouselItem>
         </CarouselContent>
       </Carousel>
-      <div className="grid lg:grid-cols-2 py-10">
+      <div className="flex flex-col lg:flex-row items-center justify-center py-10">
         <div className="flex items-center justify-center rounded-lg">
           <img
             src={hero}

@@ -28,89 +28,7 @@ import {
 } from "@/components/ui/table";
 import { ChevronDown } from "lucide-react";
 import { UserManagement, columnsUser } from "@/components";
-
-const data: UserManagement[] = [
-  {
-    id: "m5gr84i9",
-    name: "Monserrat",
-    email: "ken99@yahoo.com",
-    gender: "Female",
-    age: 25,
-    joinDate: "2021-10-01",
-  },
-  {
-    id: "3u1reuv4",
-    name: "Silas",
-    email: "Abe45@gmail.com",
-    gender: "Male",
-    age: 20,
-    joinDate: "2020-10-01",
-  },
-  {
-    id: "derv1ws0",
-    name: "Carmella",
-    email: "Monserrat44@gmail.com",
-    gender: "Female",
-    age: 22,
-    joinDate: "2019-10-01",
-  },
-  {
-    id: "2v3d4f5",
-    name: "Luna",
-    email: "Luna@gmail.com",
-    gender: "Male",
-    age: 23,
-    joinDate: "2021-12-01",
-  },
-  {
-    id: "a1v2d3f4",
-    name: "Abe",
-    email: "Abe@gmail.com",
-    gender: "Female",
-    age: 25,
-    joinDate: "2021-10-03",
-  },
-  {
-    id: "v1d2f3g4",
-    name: "Oscar",
-    email: "Oscar@gmail.com",
-    gender: "Other",
-    age: 23,
-    joinDate: "2020-12-01",
-  },
-  {
-    id: "v1d2f3g4",
-    name: "Oscar",
-    email: "Oscar@gmail.com",
-    gender: "Male",
-    age: 20,
-    joinDate: "2021-10-22",
-  },
-  {
-    id: "p1o2i3u4",
-    name: "Pablo",
-    email: "Pablo@gmail.com",
-    gender: "Other",
-    age: 25,
-    joinDate: "2020-8-26",
-  },
-  {
-    id: "m1n2b3v4",
-    name: "Xavier",
-    email: "Xavier@gmail.com",
-    gender: "Male",
-    age: 25,
-    joinDate: "2021-10-01",
-  },
-  {
-    id: "z1x2c3v4",
-    name: "Zach",
-    email: "Zach@gmail.com",
-    gender: "Female",
-    age: 22,
-    joinDate: "2021-5-01",
-  },
-];
+import customAxios from "@/utils/customAxios";
 
 const UserManagementTable = () => {
   const [sorting, setSorting] = React.useState<SortingState>([]);
@@ -124,6 +42,7 @@ const UserManagementTable = () => {
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
+  const [data, setData] = React.useState<UserManagement[]>([]);
 
   const table = useReactTable({
     data,
@@ -145,6 +64,19 @@ const UserManagementTable = () => {
       pagination,
     },
   });
+
+  React.useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const res = await customAxios.get("/user/");
+        setData(res.data.data.users);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchUsers();
+  }, []);
 
   React.useEffect(() => {
     table.setPagination(pagination);
