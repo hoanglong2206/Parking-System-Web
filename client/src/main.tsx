@@ -16,7 +16,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
           <App />
           <ToastContainer
-            position="top-right"
+            position="bottom-right"
             autoClose={2000}
             hideProgressBar
             newestOnTop={false}

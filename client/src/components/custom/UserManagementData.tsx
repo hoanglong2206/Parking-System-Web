@@ -9,14 +9,15 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { ChevronsUpDown, MoreHorizontal } from "lucide-react";
+import { firstLetterUppercase } from "@/lib/utils";
 
 export type UserManagement = {
   id: string;
   email: string;
-  name: string;
+  username: string;
   gender: "Male" | "Female" | "Other";
-  age: number;
-  joinDate: string;
+  birthday: number;
+  createAt: string;
 };
 
 export const columnsUser: ColumnDef<UserManagement>[] = [
@@ -40,7 +41,7 @@ export const columnsUser: ColumnDef<UserManagement>[] = [
     ),
   },
   {
-    accessorKey: "name",
+    accessorKey: "username",
     header: ({ column }) => {
       return (
         <Button
@@ -55,7 +56,7 @@ export const columnsUser: ColumnDef<UserManagement>[] = [
     },
     cell: ({ row }) => (
       <div className="text-center font-medium truncate">
-        {row.getValue("name")}
+        {firstLetterUppercase(row.getValue("username"))}
       </div>
     ),
   },
@@ -74,11 +75,13 @@ export const columnsUser: ColumnDef<UserManagement>[] = [
       );
     },
     cell: ({ row }) => (
-      <div className="text-center font-medium">{row.getValue("gender")}</div>
+      <div className="text-center font-medium first-letter:uppercase">
+        {row.getValue("gender")}
+      </div>
     ),
   },
   {
-    accessorKey: "age",
+    accessorKey: "birthday",
     header: ({ column }) => {
       return (
         <Button
@@ -91,12 +94,15 @@ export const columnsUser: ColumnDef<UserManagement>[] = [
         </Button>
       );
     },
-    cell: ({ row }) => (
-      <div className="text-center font-medium">{row.getValue("age")}</div>
-    ),
+    cell: ({ row }) => {
+      const birthday = new Date(row.getValue("birthday"));
+      const today = new Date();
+      const age = today.getFullYear() - birthday.getFullYear();
+      return <div className="text-center font-medium">{age}</div>;
+    },
   },
   {
-    accessorKey: "joinDate",
+    accessorKey: "createAt",
     header: ({ column }) => {
       return (
         <Button
@@ -109,9 +115,14 @@ export const columnsUser: ColumnDef<UserManagement>[] = [
         </Button>
       );
     },
-    cell: ({ row }) => (
-      <div className="text-center font-medium">{row.getValue("joinDate")}</div>
-    ),
+    cell: ({ row }) => {
+      const joinDate = new Date(row.getValue("createAt"));
+      return (
+        <div className="text-center font-medium">
+          {joinDate.toLocaleDateString()}
+        </div>
+      );
+    },
   },
   {
     id: "actions",

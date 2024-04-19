@@ -24,7 +24,7 @@ const Footer = () => {
     },
   ];
   return (
-    <footer className="relative w-full bg-slate-800 text-white pt-4 pb-2">
+    <footer className="relative w-full bg-slate-800 dark:bg-slate-900 text-white pt-4 pb-2">
       <div className="w-full flex flex-col lg:flex-row items-center justify-center gap-6 px-8 md:px-16 xl:px-32 py-4 border-b border-gray-700">
         <div className="flex items-center gap-x-4">
           <Send className="w-8 h-8" />

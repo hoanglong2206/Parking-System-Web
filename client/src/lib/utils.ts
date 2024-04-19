@@ -17,3 +17,14 @@ export const formatPrice = (amount: number) => {
     currency: "USD",
   }).format(amount);
 };
+
+export const firstLetterUppercase = (str: string) => {
+  const valueString = str.toLowerCase();
+  return valueString
+    .split(" ")
+    .map(
+      (value) =>
+        `${value.charAt(0).toUpperCase()}${value.slice(1).toLowerCase()}`
+    )
+    .join(" ");
+};

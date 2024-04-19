@@ -35,10 +35,11 @@ const createSendToken = (user, statusCode, res) => {
     data: {
       user,
     },
+    message: "Login successfully!",
   });
 };
 
-exports.signup = async (req, res) => {
+exports.register = async (req, res) => {
   try {
     const newUser = await User.create({
       username: req.body.username,
@@ -53,6 +54,7 @@ exports.signup = async (req, res) => {
       data: {
         user: newUser,
       },
+      message: "User created successfully!",
     });
   } catch (err) {
     res.status(400).json({
@@ -77,7 +79,6 @@ exports.login = async (req, res) => {
     }
 
     createSendToken(user, 200, res);
-    console.log(req.cookies);
   } catch (err) {
     res.status(400).json({
       status: "error",

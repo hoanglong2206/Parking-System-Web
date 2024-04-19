@@ -6,10 +6,10 @@ import {
   ChevronLeft,
   CircleParking,
   LayoutDashboard,
-  LogOut,
   MessageSquare,
   Settings,
   Shapes,
+  SquareArrowOutUpRight,
   UserRound,
   UsersRound,
 } from "lucide-react";
@@ -69,7 +69,7 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, setSidebarOpen }) => {
       }`}
     >
       <div className="flex items-center justify-between gap-2 px-4 lg:px-6 py-5 lg:py-6">
-        <Link to="#">
+        <Link to="/">
           <div className="hover:opacity-75 transition flex justify-center items-center gap-x-2 ">
             <Icons.logo className="w-8 h-8" />
             <p className="text-lg pb-1 font-medium">Demo App</p>
@@ -114,9 +114,9 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, setSidebarOpen }) => {
 
             <li>
               <NavLink
-                to="/app/admin/user-management"
+                to="/app/admin/customer"
                 className={`flex items-center gap-2.5 rounded-sm py-1.5 px-4 font-medium  hover:bg-neutral-500/10 duration-75 ease-in-out  ${
-                  pathname.includes("user-management") && "bg-neutral-500/10"
+                  pathname.includes("customer") && "bg-neutral-500/10"
                 }`}
               >
                 <UsersRound className="w-5 h-5" />
@@ -147,13 +147,13 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, setSidebarOpen }) => {
             </li>
             <li>
               <NavLink
-                to="/app/admin/messages"
+                to="/app/admin/blog"
                 className={`flex items-center gap-2.5 rounded-sm py-1.5 px-4 font-medium  hover:bg-neutral-500/10 duration-75 ease-in-out  ${
-                  pathname.includes("messages") && "bg-neutral-500/10"
+                  pathname.includes("blog") && "bg-neutral-500/10"
                 }`}
               >
-                <MessageSquare className="w-5 h-5" />
-                Messages
+                <SquareArrowOutUpRight className="w-5 h-5" />
+                Blogs
               </NavLink>
             </li>
           </ul>
@@ -174,6 +174,17 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, setSidebarOpen }) => {
           </li>
           <li>
             <NavLink
+              to="/app/admin/messages"
+              className={`flex items-center gap-2.5 rounded-sm py-1.5 px-4 font-medium  hover:bg-neutral-500/10 duration-75 ease-in-out  ${
+                pathname.includes("messages") && "bg-neutral-500/10"
+              }`}
+            >
+              <MessageSquare className="w-5 h-5" />
+              Messages
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
               to="/app/admin/settings"
               className={`flex items-center gap-2.5 rounded-sm py-1.5 px-4 font-medium hover:bg-neutral-500/10 duration-75 ease-in-out  ${
                 pathname.includes("settings") && "bg-neutral-500/10"
@@ -182,16 +193,6 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, setSidebarOpen }) => {
               <Settings className="w-5 h-5" />
               Settings
             </NavLink>
-          </li>
-          <li>
-            <Button
-              className="w-full flex items-center justify-start gap-2.5 rounded-sm py-1.5 px-4 font-medium  hover:bg-neutral-500/10 duration-75 ease-in-out"
-              variant="ghost"
-              size="sm"
-            >
-              <LogOut className="w-5 h-5" />
-              Logout
-            </Button>
           </li>
         </ul>
       </div>
