@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 interface LOADER {
-  loader: boolean;
+  isLoading: boolean;
 }
 
 const initialLoader: LOADER = {
-  loader: false,
+  isLoading: false,
 };
 
 const loaderSlice = createSlice({
@@ -15,13 +15,13 @@ const loaderSlice = createSlice({
     showLoader: (state) => {
       return {
         ...state,
-        loader: false,
+        isLoading: true,
       };
     },
     hideLoader: (state) => {
       return {
         ...state,
-        loader: true,
+        isLoading: false,
       };
     },
   },

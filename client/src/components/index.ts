@@ -32,3 +32,5 @@ export { default as CarSlotList } from "@/components/custom/CarSlotList";
 
 export { default as CarouselBlog } from "@/components/custom/CarouselBlog";
 export { default as BlogCard } from "@/components/custom/BlogCard";
+
+export { default as Loader } from "@/components/custom/Loader";
