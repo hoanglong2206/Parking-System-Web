@@ -8,23 +8,43 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import logo from "@/assets/react.svg";
 import { NotebookTabs, Settings, User2 } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/context/store/store";
+import customAxios from "@/utils/customAxios";
+import { hideLoader, showLoader } from "@/context/slices/loader";
+import { logout } from "@/context/slices/auth";
 
 const DropdownUser = () => {
+  const user = useSelector((state: RootState) => state.auth.user);
+  const dispatch = useDispatch();
+
+  const handleLogout = async () => {
+    try {
+      dispatch(showLoader());
+      const res = await customAxios.get("/user/logout");
+      dispatch(hideLoader());
+      if (res.data.status === "success") {
+        dispatch(logout());
+      }
+    } catch (error: any) {
+      dispatch(hideLoader());
+      console.log(error.response.data.message);
+    }
+  };
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="flex items-center justify-center gap-4 outline-none">
         <span className="hidden text-right lg:block">
           <span className="block text-base font-medium text-black dark:text-white">
-            John Doe
+            {user.username}
           </span>
-          <span className="block text-xs">UX Designer</span>
+          <span className="block text-xs">{user.role}</span>
         </span>
 
-        <Avatar className="p-1 border border-slate-200 dark:border-slate-700">
-          <AvatarImage src={logo} alt="Avatar" />
+        <Avatar className="border border-slate-300 dark:border-slate-700">
+          <AvatarImage src={user.photo} alt="Avatar" className="rounded-full" />
           <AvatarFallback>JD</AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
@@ -60,7 +80,10 @@ const DropdownUser = () => {
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem className="text-base font-medium text-black dark:text-white">
+        <DropdownMenuItem
+          onClick={handleLogout}
+          className="text-base font-medium text-black dark:text-white"
+        >
           Log out
         </DropdownMenuItem>
       </DropdownMenuContent>
