@@ -57,10 +57,17 @@ exports.register = async (req, res) => {
       message: "User created successfully!",
     });
   } catch (err) {
-    res.status(400).json({
-      status: "error",
-      message: err.message,
-    });
+    if (err.code === 11000) {
+      res.status(400).json({
+        status: "error",
+        message: "Email is already taken! Please use another email.",
+      });
+    } else {
+      res.status(400).json({
+        status: "error",
+        message: err.message || "Something went wrong! Please try again.",
+      });
+    }
   }
 };
 

@@ -1,0 +1,26 @@
+[
+  {
+    "name": "A",
+    "image": "https://images.unsplash.com/photo-1507783548227-544c3b8fc065?crop=entropy\u0026cs=tinysrgb\u0026fit=max\u0026fm=jpg\u0026ixid=M3w1MjY4NzN8MHwxfHJhbmRvbXx8fHx8fHx8fDE2OTk2OTcyNDN8\u0026ixlib=rb-4.0.3\u0026q=80\u0026w=200",
+    "slot": 10,
+    "price": 2000
+  },
+  {
+    "name": "B",
+    "image": "https://images.unsplash.com/photo-1629221892514-7abb71a803f7?crop=entropy\u0026cs=tinysrgb\u0026fit=max\u0026fm=jpg\u0026ixid=M3w1MjY4NzN8MHwxfHJhbmRvbXx8fHx8fHx8fDE2OTk2OTcyNDN8\u0026ixlib=rb-4.0.3\u0026q=80\u0026w=200",
+    "slot": 12,
+    "price": 2000
+  },
+  {
+    "name": "C",
+    "image": "https://images.unsplash.com/photo-1478612068036-1eff8080e24b?crop=entropy\u0026cs=tinysrgb\u0026fit=max\u0026fm=jpg\u0026ixid=M3w1MjY4NzN8MHwxfHJhbmRvbXx8fHx8fHx8fDE2OTk2OTcyNDN8\u0026ixlib=rb-4.0.3\u0026q=80\u0026w=200",
+    "slot": 8,
+    "price": 2000
+  },
+  {
+    "name": "D",
+    "image": "https://images.unsplash.com/photo-1611597617014-9970403724e9?crop=entropy\u0026cs=tinysrgb\u0026fit=max\u0026fm=jpg\u0026ixid=M3w1MjY4NzN8MHwxfHJhbmRvbXx8fHx8fHx8fDE2OTk2OTcyNDN8\u0026ixlib=rb-4.0.3\u0026q=80\u0026w=200",
+    "slot": 10,
+    "price": 2000
+  }
+]
