@@ -9,6 +9,8 @@ const path = require("path");
 const app = express();
 
 const userRoute = require("./routes/user");
+const areaRoute = require("./routes/area");
+const slotRoute = require("./routes/slot");
 
 app.use(morgan("dev"));
 
@@ -36,6 +38,8 @@ app.use(function (req, _res, next) {
   next();
 });
 app.use("/api/user", userRoute);
+app.use("/api/area", areaRoute);
+app.use("/api/slot", slotRoute);
 
 // app.use(express.static(path.join(__dirname, "../client/src/assets")));
 

@@ -7,7 +7,15 @@ exports.getMe = (req, _res, next) => {
 
 exports.getUser = async (req, res) => {
   try {
-    const user = await User.findById(req.params.id);
+    let user;
+    if (req.params.id.match(/^[0-9a-fA-F]{24}$/)) {
+      user = await User.findById(req.params.id);
+    }
+
+    if (!user) {
+      throw new Error("No user found!");
+    }
+
     user.passwordResetToken = undefined;
     user.passwordResetExpires = undefined;
     res.status(200).json({
