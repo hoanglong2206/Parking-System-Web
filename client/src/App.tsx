@@ -19,6 +19,8 @@ import {
   Blog,
   Parking,
   BlogManagement,
+  Area,
+  Slot,
 } from "@/pages";
 import { AdminLayout, DefaultLayout, UserLayout } from "@/layouts";
 import { AdminProtect, UserProtect } from "@/routes";
@@ -86,6 +88,8 @@ function App() {
         >
           <Route index element={<Dashboard />} />
           <Route path="allotment" element={<Allotment />} />
+          <Route path="allotment/:locationId" element={<Area />} />
+          <Route path="allotment/:locationId/:areaId" element={<Slot />} />
           <Route path="allotment/info-car-slot" element={<InfoCarSlot />} />
           <Route path="payment" element={<Payment />} />
           <Route path="customer" element={<UserManagement />} />

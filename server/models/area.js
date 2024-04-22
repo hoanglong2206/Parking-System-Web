@@ -8,10 +8,6 @@ const areaSchema = new mongoose.Schema(
       required: [true, "Please provide the area name"],
       unique: true,
     },
-    image: {
-      type: String,
-      required: [true, "Please provide the area image"],
-    },
     slot: {
       type: Number,
       required: [true, "Please provide the number of slots"],

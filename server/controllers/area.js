@@ -51,6 +51,7 @@ exports.createArea = async (req, res) => {
 
     const slots = [];
     for (let i = 1; i <= newArea.slot; i++) {
+      console.log(newArea.name + i);
       slots.push({ name: `${newArea.name}${i}`, area: newArea.id });
     }
 

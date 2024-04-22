@@ -17,3 +17,5 @@ export { default as SettingsUser } from "@/pages/SettingsUser";
 export { default as Parking } from "@/pages/Parking";
 export { default as Blog } from "@/pages/Blog";
 export { default as BlogManagement } from "@/pages/BlogManagement";
+export { default as Area } from "@/pages/Area";
+export { default as Slot } from "@/pages/Slot";
