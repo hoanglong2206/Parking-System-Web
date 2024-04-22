@@ -1,59 +1,153 @@
 import { Separator } from "@/components/ui/separator";
-import CarSlotItem from "./CarSlotItem";
-
+import { CarSlotItem } from "@/components";
+import { Slot } from "@/interfaces";
+import { useLayoutEffect, useState } from "react";
 interface CarSlotListProps {
-  areaId: string;
-  areaName: string;
-  slots: number;
+  data: Slot[];
 }
 
-type Status = { status: "empty" | "parked" | "reserved" };
+const CarSlotList = ({ data }: CarSlotListProps) => {
+  const [typeSlot, setTypeSlot] = useState<number>(1);
 
-const data: Status[] = [
-  {
-    status: "empty",
-  },
-  {
-    status: "parked",
-  },
-  {
-    status: "reserved",
-  },
-  {
-    status: "parked",
-  },
-  {
-    status: "empty",
-  },
-  {
-    status: "parked",
-  },
-];
+  useLayoutEffect(() => {
+    switch (data.length) {
+      case 44:
+        setTypeSlot(1);
+        break;
+      case 52:
+        setTypeSlot(2);
+        break;
+      default:
+        setTypeSlot(1);
+        break;
+    }
+  }, [data.length]);
 
-const CarSlotList = ({ areaId, areaName, slots }: CarSlotListProps) => {
   return (
-    <div className="w-[188px] space-y-1">
-      <h1 className="text-xl font-semibold text-center">{areaName}</h1>
-      {Array.from({ length: slots / 2 }, (_, index) => (
-        <>
-          <Separator />
-          <div className="flex h-[68px] items-center flex-wrap gap-x-2">
-            <CarSlotItem
-              slotName={areaName + (index + 1)}
-              status={data[index].status}
-              isFront
-            />
-            <Separator orientation="vertical" />
-            <CarSlotItem
-              slotName={areaName + (index + slots / 2 + 1)}
-              status={data[index + slots / 2].status}
-            />
-          </div>
-        </>
-      ))}
-      <Separator />
+    <div className="w-full">
+      {typeSlot === 1 ? (
+        <CarSlotType1 data={data} />
+      ) : (
+        <CarSlotType2 data={data} />
+      )}
     </div>
   );
 };
 
 export default CarSlotList;
+
+const CarSlotType1 = ({ data }: { data: Slot[] }) => {
+  return (
+    <div className="space-y-20">
+      <div className="flex">
+        {Array.from({ length: 12 }, (_, index) => (
+          <div key={index} className="flex items-center">
+            <Separator orientation="vertical" />
+            <div className="flex flex-col w-[68px] items-center">
+              <Separator />
+              <CarSlotItem data={data[index]} direction="right" />
+            </div>
+            <Separator orientation="vertical" />
+          </div>
+        ))}
+      </div>
+      <div className="flex items-center justify-evenly">
+        <div>
+          {Array.from({ length: 3 }, (_, index) => (
+            <div key={index}>
+              <Separator />
+              <div className="flex h-[68px] items-center gap-x-2">
+                <CarSlotItem data={data[index + 12]} direction="front" />
+                <Separator orientation="vertical" />
+                <CarSlotItem data={data[index + 12 + 3]} direction="back" />
+              </div>
+            </div>
+          ))}
+          <Separator />
+        </div>
+        <div>
+          {Array.from({ length: 3 }, (_, index) => (
+            <div key={index}>
+              <Separator />
+              <div className="flex h-[68px] items-center gap-x-2">
+                <CarSlotItem data={data[index + 18]} direction="front" />
+                <Separator orientation="vertical" />
+                <CarSlotItem data={data[index + 18 + 3]} direction="back" />
+              </div>
+            </div>
+          ))}
+          <Separator />
+        </div>
+        <div>
+          {Array.from({ length: 3 }, (_, index) => (
+            <div key={index}>
+              <Separator />
+              <div className="flex h-[68px] items-center gap-x-2">
+                <CarSlotItem data={data[index + 24]} direction="front" />
+                <Separator orientation="vertical" />
+                <CarSlotItem data={data[index + 24 + 3]} direction="back" />
+              </div>
+            </div>
+          ))}
+          <Separator />
+        </div>
+      </div>
+      <div className="flex">
+        {Array.from({ length: 12 }, (_, index) => (
+          <div key={index} className="flex items-center">
+            <Separator orientation="vertical" />
+            <div className="flex flex-col w-[68px] items-center">
+              <CarSlotItem data={data[index + 30]} direction="right" />
+              <Separator />
+            </div>
+            <Separator orientation="vertical" />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+const CarSlotType2 = ({ data }: { data: Slot[] }) => {
+  return (
+    <div className="w-[188px] flex flex-col gap-y-20">
+      <div className="flex">
+        {Array.from({ length: 12 }, (_, index) => (
+          <div key={index} className="flex items-center">
+            <Separator orientation="vertical" />
+            <div className="flex flex-col w-[68px] items-center">
+              <Separator />
+              <CarSlotItem data={data[index]} direction="right" />
+            </div>
+            <Separator orientation="vertical" />
+          </div>
+        ))}
+      </div>
+      <div className="flex">
+        {Array.from({ length: 24 / 2 }, (_, index) => (
+          <div key={index} className="flex items-center">
+            <Separator orientation="vertical" />
+            <div className="flex flex-col w-[68px] items-center">
+              <CarSlotItem data={data[index]} direction="right" />
+              <Separator />
+              <CarSlotItem data={data[index]} direction="right" />
+            </div>
+            <Separator orientation="vertical" />
+          </div>
+        ))}
+      </div>
+      <div className="flex">
+        {Array.from({ length: 24 / 2 }, (_, index) => (
+          <div key={index} className="flex items-center">
+            <Separator orientation="vertical" />
+            <div className="flex flex-col w-[68px] items-center">
+              <CarSlotItem data={data[index]} direction="right" />
+              <Separator />
+            </div>
+            <Separator orientation="vertical" />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};

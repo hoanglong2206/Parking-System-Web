@@ -1,41 +1,66 @@
-import { frontCar, backCar } from "@/assets/car";
-import { useNavigate, NavigateFunction } from "react-router-dom";
+import { frontCar, backCar, leftCar, rightCar } from "@/assets/car";
+// import { useNavigate, NavigateFunction } from "react-router-dom";
 import { Button } from "../ui/button";
+import { Slot } from "@/interfaces";
+import { useLayoutEffect, useState } from "react";
 
 interface CarSlotItemProps {
-  //   slotId: string;
-  slotName: string;
-  status: "empty" | "parked" | "reserved";
-  isFront?: boolean;
+  data: Slot;
+  direction: "front" | "back" | "right" | "left";
 }
 
-const CarSlotItem = ({ slotName, status, isFront }: CarSlotItemProps) => {
-  const navigate: NavigateFunction = useNavigate();
+const CarSlotItem = ({ data, direction }: CarSlotItemProps) => {
+  const [carDirection, setCarDirection] = useState<string>(frontCar);
+  const [size, setSize] = useState<string>("w-[85px] h-[65px]");
+  // const navigate: NavigateFunction = useNavigate();
   const handleClick = () => {
-    navigate("/app/admin/allotment/info-car-slot");
+    console.log(data);
   };
+
+  useLayoutEffect(() => {
+    switch (direction) {
+      case "front":
+        setCarDirection(frontCar);
+        setSize("w-[85px] h-[65px]");
+        break;
+      case "back":
+        setCarDirection(backCar);
+        setSize("w-[85px] h-[65px]");
+        break;
+      case "left":
+        setCarDirection(leftCar);
+        setSize("w-[65px] h-[85px]");
+        break;
+      case "right":
+        setCarDirection(rightCar);
+        setSize("w-[65px] h-[85px]");
+        break;
+      default:
+        break;
+    }
+  }, [direction]);
   return (
     <Button
       variant={"ghost"}
       onClick={handleClick}
-      disabled={status === "empty"}
-      className={`flex p-0 items-center justify-center w-[85px] h-[65px] rounded-lg ${
-        status === "reserved"
+      disabled={data?.status === "available"}
+      className={`flex p-0 items-center justify-center ${size} rounded-lg ${
+        data?.status === "booked"
           ? "bg-emerald-400 hover:bg-emerald-500"
           : "bg-gray-200 hover:bg-gray-300 "
-      }  ${status === "empty" ? "disabled:opacity-70" : "r"}`}
+      }  ${data?.status === "unavailable" ? "disabled:opacity-70" : ""}`}
     >
-      {status === "parked" ? (
-        <img src={isFront ? frontCar : backCar} width={80} alt="" />
+      {data?.status === "unavailable" ? (
+        <img src={carDirection} width={80} alt="" />
       ) : (
         <p
           className={`${
-            status === "empty"
+            data?.status === "available"
               ? "text-gray-500"
               : "text-gray-200 dark:text-gray-700"
           }`}
         >
-          {slotName}
+          {data?.name}
         </p>
       )}
     </Button>

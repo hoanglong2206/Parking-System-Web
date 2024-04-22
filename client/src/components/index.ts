@@ -27,6 +27,13 @@ export type { Payment } from "@/components/custom/PaymentData";
 export { columnsPayment } from "@/components/custom/PaymentData";
 export type { UserManagement } from "@/components/custom/UserManagementData";
 export { columnsUser } from "@/components/custom/UserManagementData";
+
+export { default as LocationList } from "@/components/custom/LocationList";
+export { default as LocationItem } from "@/components/custom/LocationItem";
+export { default as AreaList } from "@/components/custom/AreaList";
+export { default as AreaItem } from "@/components/custom/AreaItem";
+export { default as AreaModal } from "@/components/custom/AreaModal";
+export { default as SlotList } from "@/components/custom/SlotList";
 export { default as CarSlotItem } from "@/components/custom/CarSlotItem";
 export { default as CarSlotList } from "@/components/custom/CarSlotList";
 
@@ -34,3 +41,6 @@ export { default as CarouselBlog } from "@/components/custom/CarouselBlog";
 export { default as BlogCard } from "@/components/custom/BlogCard";
 
 export { default as Loader } from "@/components/custom/Loader";
+
+export { default as FormPicker } from "@/components/custom/FormPicker";
+export { default as LocationFormPopover } from "@/components/custom/LocationFormPopover";
