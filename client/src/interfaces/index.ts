@@ -14,6 +14,7 @@ export interface Area {
   id: string;
   name: string;
   slot: number;
+  floors: number;
   price: number;
 }
 

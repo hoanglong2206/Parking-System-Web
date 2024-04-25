@@ -2,16 +2,12 @@ import { useRef, useEffect, useCallback } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
-  Banknote,
   ChevronLeft,
   CircleParking,
   LayoutDashboard,
-  MessageSquare,
   Settings,
-  Shapes,
-  SquareArrowOutUpRight,
+  SquareGanttChart,
   UserRound,
-  UsersRound,
 } from "lucide-react";
 import { Icons } from "@/utils/icon";
 
@@ -91,9 +87,9 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, setSidebarOpen }) => {
           <ul className="mt-4 mb-5 flex flex-col gap-2">
             <li>
               <NavLink
-                to="/app/admin"
+                to="/admin"
                 className={`flex items-center gap-2.5 rounded-sm py-1.5 px-4 font-medium  hover:bg-neutral-500/10 duration-75 ease-in-out  ${
-                  pathname === "/app/admin" && "bg-neutral-500/10"
+                  pathname === "/admin" && "bg-neutral-500/10"
                 }`}
               >
                 <LayoutDashboard className="w-5 h-5" />
@@ -102,7 +98,7 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, setSidebarOpen }) => {
             </li>
             <li>
               <NavLink
-                to="/app/admin/allotment"
+                to="/admin/allotment"
                 className={`flex items-center gap-2.5 rounded-sm py-1.5 px-4 font-medium  hover:bg-neutral-500/10 duration-75 ease-in-out  ${
                   pathname.includes("allotment") && "bg-neutral-500/10"
                 }`}
@@ -111,10 +107,18 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, setSidebarOpen }) => {
                 Allotment
               </NavLink>
             </li>
-
-            <li>
+            <NavLink
+              to="/admin/management"
+              className={`flex items-center gap-2.5 rounded-sm py-1.5 px-4 font-medium  hover:bg-neutral-500/10 duration-75 ease-in-out  ${
+                pathname.includes("management") && "bg-neutral-500/10"
+              }`}
+            >
+              <SquareGanttChart className="w-5 h-5" />
+              Management
+            </NavLink>
+            {/* <li>
               <NavLink
-                to="/app/admin/customer"
+                to="/admin/customer"
                 className={`flex items-center gap-2.5 rounded-sm py-1.5 px-4 font-medium  hover:bg-neutral-500/10 duration-75 ease-in-out  ${
                   pathname.includes("customer") && "bg-neutral-500/10"
                 }`}
@@ -122,10 +126,10 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, setSidebarOpen }) => {
                 <UsersRound className="w-5 h-5" />
                 User Management
               </NavLink>
-            </li>
-            <li>
+            </li> */}
+            {/* <li>
               <NavLink
-                to="/app/admin/payment"
+                to="/admin/payment"
                 className={`flex items-center gap-2.5 rounded-sm py-1.5 px-4 font-medium  hover:bg-neutral-500/10 duration-75 ease-in-out  ${
                   pathname.includes("payment") && "bg-neutral-500/10"
                 }`}
@@ -133,10 +137,10 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, setSidebarOpen }) => {
                 <Banknote className="w-5 h-5" />
                 Payment
               </NavLink>
-            </li>
-            <li>
+            </li> */}
+            {/* <li>
               <NavLink
-                to="/app/admin/equipment"
+                to="/admin/equipment"
                 className={`flex items-center gap-2.5 rounded-sm py-1.5 px-4 font-medium  hover:bg-neutral-500/10 duration-75 ease-in-out  ${
                   pathname.includes("equipment") && "bg-neutral-500/10"
                 }`}
@@ -147,7 +151,7 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, setSidebarOpen }) => {
             </li>
             <li>
               <NavLink
-                to="/app/admin/blog"
+                to="/admin/blog"
                 className={`flex items-center gap-2.5 rounded-sm py-1.5 px-4 font-medium  hover:bg-neutral-500/10 duration-75 ease-in-out  ${
                   pathname.includes("blog") && "bg-neutral-500/10"
                 }`}
@@ -155,7 +159,7 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, setSidebarOpen }) => {
                 <SquareArrowOutUpRight className="w-5 h-5" />
                 Blogs
               </NavLink>
-            </li>
+            </li> */}
           </ul>
         </nav>
       </div>
@@ -163,7 +167,7 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, setSidebarOpen }) => {
         <ul className="flex flex-col gap-2">
           <li>
             <NavLink
-              to="/app/admin/profile"
+              to="/admin/profile"
               className={`flex items-center gap-2.5 rounded-sm py-1.5 px-4 font-medium  hover:bg-neutral-500/10 duration-75 ease-in-out  ${
                 pathname.includes("profile") && "bg-neutral-500/10"
               }`}
@@ -172,9 +176,9 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, setSidebarOpen }) => {
               Profile
             </NavLink>
           </li>
-          <li>
+          {/* <li>
             <NavLink
-              to="/app/admin/messages"
+              to="/admin/messages"
               className={`flex items-center gap-2.5 rounded-sm py-1.5 px-4 font-medium  hover:bg-neutral-500/10 duration-75 ease-in-out  ${
                 pathname.includes("messages") && "bg-neutral-500/10"
               }`}
@@ -182,10 +186,10 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, setSidebarOpen }) => {
               <MessageSquare className="w-5 h-5" />
               Messages
             </NavLink>
-          </li>
+          </li> */}
           <li>
             <NavLink
-              to="/app/admin/settings"
+              to="/admin/settings"
               className={`flex items-center gap-2.5 rounded-sm py-1.5 px-4 font-medium hover:bg-neutral-500/10 duration-75 ease-in-out  ${
                 pathname.includes("settings") && "bg-neutral-500/10"
               }`}

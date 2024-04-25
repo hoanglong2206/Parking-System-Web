@@ -2,7 +2,6 @@ const fs = require("fs");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const User = require("../models/user");
-const Area = require("../models/area");
 
 dotenv.config({ path: "./.env" });
 
@@ -16,13 +15,11 @@ mongoose.connect(DB, {}).then(() => console.log("DB connection successful!"));
 
 // READ JSON FILE
 const users = JSON.parse(fs.readFileSync(`${__dirname}/users.json`, "utf-8"));
-const areas = JSON.parse(fs.readFileSync(`${__dirname}/areas.json`, "utf-8"));
 
 // IMPORT DATA INTO DB
 const importData = async () => {
   try {
     await User.create(users, { validateBeforeSave: false });
-    // await Area.create(areas);
     console.log("Data successfully loaded!");
   } catch (err) {
     console.log(err);
@@ -33,8 +30,7 @@ const importData = async () => {
 // DELETE ALL DATA FROM DB
 const deleteData = async () => {
   try {
-    // await User.deleteMany();
-    await Area.deleteMany();
+    await User.deleteMany();
     console.log("Data successfully deleted!");
   } catch (err) {
     console.log(err);

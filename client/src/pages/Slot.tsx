@@ -12,6 +12,7 @@ const SlotPage = () => {
     id: "",
     name: "",
     slot: 0,
+    floors: 0,
     price: 0,
   });
   const { areaId } = useParams<{ areaId: string }>();
@@ -22,7 +23,7 @@ const SlotPage = () => {
       try {
         const response = await customAxios.get(`/area/${areaId}`);
         if (response.data.status === "success") {
-          setArea(response.data.data.area);
+          setArea(response.data.area);
         }
       } catch (error: any) {
         toast.error(error.response.data.message);
@@ -36,7 +37,7 @@ const SlotPage = () => {
         const response = await customAxios.get(`/slot/area/${areaId}`);
         if (response.data.status === "success") {
           setData(
-            response.data.data.slots.sort((a: Slot, b: Slot) =>
+            response.data.slots.sort((a: Slot, b: Slot) =>
               sortAlphaNum(a.name, b.name)
             )
           );
