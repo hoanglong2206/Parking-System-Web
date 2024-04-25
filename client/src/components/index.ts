@@ -22,11 +22,14 @@ export {
 } from "@/components/custom/AnalyticsData";
 export { default as PaymentTable } from "@/components/custom/PaymentTable";
 export { default as UserManagementTable } from "@/components/custom/UserManagementTable";
+export { default as ManagementTable } from "@/components/custom/ManagementTable";
 
 export type { Payment } from "@/components/custom/PaymentData";
 export { columnsPayment } from "@/components/custom/PaymentData";
 export type { UserManagement } from "@/components/custom/UserManagementData";
 export { columnsUser } from "@/components/custom/UserManagementData";
+export type { Management } from "@/components/custom/ManagementData";
+export { columnsManagement } from "@/components/custom/ManagementData";
 
 export { default as LocationList } from "@/components/custom/LocationList";
 export { default as LocationItem } from "@/components/custom/LocationItem";

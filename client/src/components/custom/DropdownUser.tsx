@@ -23,10 +23,12 @@ import { hideLoader, showLoader } from "@/context/slices/loader";
 import { logout } from "@/context/slices/auth";
 import { firstLetterUppercase } from "@/lib/utils";
 import { Badge } from "../ui/badge";
+import { NavigateFunction, useNavigate } from "react-router-dom";
 
 const DropdownUser = () => {
   const user = useSelector((state: RootState) => state.auth.user);
   const dispatch = useDispatch();
+  const navigate: NavigateFunction = useNavigate();
 
   const handleLogout = async () => {
     try {
@@ -35,6 +37,7 @@ const DropdownUser = () => {
       dispatch(hideLoader());
       if (res.data.status === "success") {
         dispatch(logout());
+        navigate("/");
       }
     } catch (error: any) {
       dispatch(hideLoader());
@@ -76,7 +79,7 @@ const DropdownUser = () => {
           {user.role === "admin" ? (
             <>
               <DropdownMenuItem>
-                <Link to="/app/admin" className="flex items-center gap-2.5">
+                <Link to="/admin" className="flex items-center gap-2.5">
                   <LayoutDashboard className="w-5 h-5" />
                   <span className="text-base font-medium text-black dark:text-white">
                     Admin

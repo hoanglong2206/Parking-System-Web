@@ -11,10 +11,10 @@ const CarSlotList = ({ data }: CarSlotListProps) => {
 
   useLayoutEffect(() => {
     switch (data.length) {
-      case 44:
+      case 32:
         setTypeSlot(1);
         break;
-      case 52:
+      case 40:
         setTypeSlot(2);
         break;
       default:
@@ -39,8 +39,8 @@ export default CarSlotList;
 const CarSlotType1 = ({ data }: { data: Slot[] }) => {
   return (
     <div className="space-y-20">
-      <div className="flex">
-        {Array.from({ length: 12 }, (_, index) => (
+      <div className="flex justify-center">
+        {Array.from({ length: 10 }, (_, index) => (
           <div key={index} className="flex items-center">
             <Separator orientation="vertical" />
             <div className="flex flex-col w-[68px] items-center">
@@ -57,9 +57,9 @@ const CarSlotType1 = ({ data }: { data: Slot[] }) => {
             <div key={index}>
               <Separator />
               <div className="flex h-[68px] items-center gap-x-2">
-                <CarSlotItem data={data[index + 12]} direction="front" />
+                <CarSlotItem data={data[index + 10]} direction="front" />
                 <Separator orientation="vertical" />
-                <CarSlotItem data={data[index + 12 + 3]} direction="back" />
+                <CarSlotItem data={data[index + 10 + 3]} direction="back" />
               </div>
             </div>
           ))}
@@ -70,34 +70,21 @@ const CarSlotType1 = ({ data }: { data: Slot[] }) => {
             <div key={index}>
               <Separator />
               <div className="flex h-[68px] items-center gap-x-2">
-                <CarSlotItem data={data[index + 18]} direction="front" />
+                <CarSlotItem data={data[index + 16]} direction="front" />
                 <Separator orientation="vertical" />
-                <CarSlotItem data={data[index + 18 + 3]} direction="back" />
-              </div>
-            </div>
-          ))}
-          <Separator />
-        </div>
-        <div>
-          {Array.from({ length: 3 }, (_, index) => (
-            <div key={index}>
-              <Separator />
-              <div className="flex h-[68px] items-center gap-x-2">
-                <CarSlotItem data={data[index + 24]} direction="front" />
-                <Separator orientation="vertical" />
-                <CarSlotItem data={data[index + 24 + 3]} direction="back" />
+                <CarSlotItem data={data[index + 16 + 3]} direction="back" />
               </div>
             </div>
           ))}
           <Separator />
         </div>
       </div>
-      <div className="flex">
-        {Array.from({ length: 12 }, (_, index) => (
+      <div className="flex justify-center">
+        {Array.from({ length: 10 }, (_, index) => (
           <div key={index} className="flex items-center">
             <Separator orientation="vertical" />
             <div className="flex flex-col w-[68px] items-center">
-              <CarSlotItem data={data[index + 30]} direction="right" />
+              <CarSlotItem data={data[index + 22]} direction="right" />
               <Separator />
             </div>
             <Separator orientation="vertical" />
@@ -110,9 +97,9 @@ const CarSlotType1 = ({ data }: { data: Slot[] }) => {
 
 const CarSlotType2 = ({ data }: { data: Slot[] }) => {
   return (
-    <div className="w-[188px] flex flex-col gap-y-20">
-      <div className="flex">
-        {Array.from({ length: 12 }, (_, index) => (
+    <div className="space-y-20">
+      <div className="flex justify-center">
+        {Array.from({ length: 10 }, (_, index) => (
           <div key={index} className="flex items-center">
             <Separator orientation="vertical" />
             <div className="flex flex-col w-[68px] items-center">
@@ -123,25 +110,25 @@ const CarSlotType2 = ({ data }: { data: Slot[] }) => {
           </div>
         ))}
       </div>
-      <div className="flex">
-        {Array.from({ length: 24 / 2 }, (_, index) => (
+      <div className="flex justify-center">
+        {Array.from({ length: 10 }, (_, index) => (
           <div key={index} className="flex items-center">
             <Separator orientation="vertical" />
             <div className="flex flex-col w-[68px] items-center">
-              <CarSlotItem data={data[index]} direction="right" />
+              <CarSlotItem data={data[index + 10]} direction="right" />
               <Separator />
-              <CarSlotItem data={data[index]} direction="right" />
+              <CarSlotItem data={data[index + 20]} direction="right" />
             </div>
             <Separator orientation="vertical" />
           </div>
         ))}
       </div>
-      <div className="flex">
-        {Array.from({ length: 24 / 2 }, (_, index) => (
+      <div className="flex justify-center">
+        {Array.from({ length: 10 }, (_, index) => (
           <div key={index} className="flex items-center">
             <Separator orientation="vertical" />
             <div className="flex flex-col w-[68px] items-center">
-              <CarSlotItem data={data[index]} direction="right" />
+              <CarSlotItem data={data[index + 30]} direction="right" />
               <Separator />
             </div>
             <Separator orientation="vertical" />

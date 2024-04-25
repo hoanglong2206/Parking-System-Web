@@ -5,22 +5,23 @@ import {
   Login,
   Register,
   Payment,
-  UserManagement,
+  Customer,
   Allotment,
   Equipments,
   ProfileAdmin,
   Messages,
   Settings,
   NotFound,
-  InfoCarSlot,
   Bookings,
   ProfileUser,
   SettingsUser,
   Blog,
   Parking,
   BlogManagement,
+  SlotDetail,
   Area,
   Slot,
+  Management,
 } from "@/pages";
 import { AdminLayout, DefaultLayout, UserLayout } from "@/layouts";
 import { AdminProtect, UserProtect } from "@/routes";
@@ -79,7 +80,7 @@ function App() {
           </Route>
         </Route>
         <Route
-          path="app/admin"
+          path="/admin"
           element={
             <AdminProtect>
               <AdminLayout />
@@ -90,9 +91,13 @@ function App() {
           <Route path="allotment" element={<Allotment />} />
           <Route path="allotment/:locationId" element={<Area />} />
           <Route path="allotment/:locationId/:areaId" element={<Slot />} />
-          <Route path="allotment/info-car-slot" element={<InfoCarSlot />} />
+          <Route
+            path="allotment/:locationId/:areaId/:slotId"
+            element={<SlotDetail />}
+          />
           <Route path="payment" element={<Payment />} />
-          <Route path="customer" element={<UserManagement />} />
+          <Route path="customer" element={<Customer />} />
+          <Route path="management" element={<Management />} />
           <Route path="blog" element={<BlogManagement />} />
           <Route path="equipment" element={<Equipments />} />
           <Route path="messages" element={<Messages />} />

@@ -18,16 +18,18 @@ const AreaPage = () => {
     const formData = new FormData(e.currentTarget);
     const areaName = formData.get("areaName");
     const areaSlot = formData.get("areaSlot");
+    const areaFloors = formData.get("areaFloors");
     const areaPrice = formData.get("areaPrice");
     try {
       const response = await customAxios.post("/area/", {
         name: areaName,
         slot: areaSlot,
+        floors: areaFloors,
         price: areaPrice,
       });
       if (response.data.status === "success") {
         setOpen(false);
-        setAreas((prev) => [...prev, response.data.data.area]);
+        setAreas((prev) => [...prev, response.data.area]);
         toast.success(response.data.message);
       }
     } catch (error: any) {
@@ -40,7 +42,7 @@ const AreaPage = () => {
       try {
         const response = await customAxios.get("/area/");
         if (response.data.status === "success") {
-          setAreas(response.data.data.areas);
+          setAreas(response.data.areas);
         }
       } catch (error) {
         console.error(error);
@@ -87,7 +89,7 @@ const AreaPage = () => {
               />
             </div>
             <div className="flex items-center justify-between gap-x-10">
-              <div className="space-y-2 w-1/2">
+              <div className="space-y-2">
                 <Label htmlFor="slot">Slot</Label>
                 <Input
                   type="number"
@@ -98,10 +100,21 @@ const AreaPage = () => {
                   className="focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0"
                 />
               </div>
-              <div className="space-y-2 w-1/2">
+              <div className="space-y-2">
+                <Label htmlFor="floors">Floors</Label>
+                <Input
+                  type="number"
+                  required
+                  id="floors"
+                  name="areaFloors"
+                  placeholder="Floors"
+                  className="focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0"
+                />
+              </div>
+              <div className="space-y-2">
                 <Label htmlFor="price">
                   Price
-                  <span className="text-muted-foreground"> /month</span>
+                  <span className="text-muted-foreground"> /hours</span>
                 </Label>
                 <Input
                   type="number"

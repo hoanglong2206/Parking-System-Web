@@ -34,7 +34,7 @@
   },
   {
     "birthday": "2003-04-19",
-    "createAt": "2024-04-19T17:16:15.570Z",
+    "createAt": "2024-03-19T17:16:15.570Z",
     "_id": "661e44778be823bab4baac7f",
     "username": "user2",
     "email": "user2@gmail.com",
@@ -45,7 +45,7 @@
   },
   {
     "birthday": "2000-04-19",
-    "createAt": "2024-04-19T17:16:15.570Z",
+    "createAt": "2023-04-19T17:16:15.570Z",
     "_id": "661e447c8be823bab4baac81",
     "username": "user3",
     "email": "user3@gmail.com",
@@ -56,7 +56,7 @@
   },
   {
     "birthday": "2001-04-19",
-    "createAt": "2024-04-19T17:16:15.570Z",
+    "createAt": "2024-01-11T17:16:15.570Z",
     "_id": "661e44968be823bab4baac83",
     "username": "user5",
     "email": "user5@gmail.com",
@@ -67,7 +67,7 @@
   },
   {
     "birthday": "1998-04-19",
-    "createAt": "2024-04-19T17:16:15.570Z",
+    "createAt": "2023-09-12T17:16:15.570Z",
     "_id": "661e44e78be823bab4baac88",
     "username": "user4",
     "email": "user4@gmail.com",
@@ -78,7 +78,7 @@
   },
   {
     "birthday": "1997-04-19",
-    "createAt": "2024-04-19T17:16:15.570Z",
+    "createAt": "2023-12-19T17:16:15.570Z",
     "_id": "661e44ec8be823bab4baac8a",
     "username": "user6",
     "email": "user6@gmail.com",
@@ -122,7 +122,7 @@
   },
   {
     "birthday": "1999-04-22",
-    "createAt": "2024-04-19T17:16:15.570Z",
+    "createAt": "2022-12-19T17:16:15.570Z",
     "_id": "661e45028be823bab4baac92",
     "username": "user10",
     "email": "user10@gmail.com",
@@ -133,7 +133,7 @@
   },
   {
     "birthday": "2001-06-22",
-    "createAt": "2024-04-19T17:16:15.570Z",
+    "createAt": "2023-11-19T17:16:15.570Z",
     "_id": "6621430cb9a595da2005985e",
     "username": "test",
     "email": "test@test.com",
@@ -144,7 +144,7 @@
   },
   {
     "birthday": "2000-01-19",
-    "createAt": "2024-04-19T17:16:15.570Z",
+    "createAt": "2024-04-11T17:16:15.570Z",
     "_id": "662250812e03e1cfac277f62",
     "username": "test1",
     "email": "test1@gmail.com",
@@ -160,7 +160,7 @@
     "photo": "https://res.cloudinary.com/dsgqpuh9c/image/upload/v1712459530/default_ayudlr.jpg",
     "role": "user",
     "gender": "female",
-    "birthday": "2004-04-19T16:09:33.831Z",
+    "birthday": "2004-04-19",
     "createAt": "2024-04-19T16:09:33.831Z",
     "__v": 0
   },
