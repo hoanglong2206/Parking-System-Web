@@ -59,6 +59,10 @@ const userSchema = new mongoose.Schema(
       default: true,
       select: false,
     },
+    createAt: {
+      type: Date,
+      default: Date.now(),
+    },
   },
   {
     toJSON: { virtuals: true },
@@ -83,7 +87,7 @@ userSchema.pre("save", function (next) {
 });
 
 userSchema.pre(/^find/, function (next) {
-  this.find({ active: { $ne: false } });
+  this.sort({ createAt: -1 }).find({ active: { $ne: false } });
   next();
 });
 

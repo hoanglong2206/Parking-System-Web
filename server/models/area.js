@@ -12,6 +12,10 @@ const areaSchema = new mongoose.Schema(
       type: Number,
       required: [true, "Please provide the number of slots"],
     },
+    floors: {
+      type: Number,
+      required: [true, "Please provide the number of floors"],
+    },
     price: {
       type: Number,
       required: [true, "Please provide the area price"],

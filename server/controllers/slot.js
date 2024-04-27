@@ -1,4 +1,5 @@
 const Slot = require("../models/slot");
+const Area = require("../models/area");
 
 exports.getSlots = async (_req, res) => {
   try {
@@ -21,7 +22,12 @@ exports.getSlots = async (_req, res) => {
 
 exports.getSlotsByArea = async (req, res) => {
   try {
-    if (!req.params.areaId.match(/^[0-9a-fA-F]{24}$/)) {
+    let area;
+    if (req.params.areaId.match(/^[0-9a-fA-F]{24}$/)) {
+      area = await Area.findById(req.params.areaId);
+    }
+
+    if (!area) {
       throw new Error("Area not found!");
     }
 
@@ -29,10 +35,7 @@ exports.getSlotsByArea = async (req, res) => {
 
     res.status(200).json({
       status: "success",
-      results: slots.length,
-      data: {
-        slots,
-      },
+      slots,
     });
   } catch (error) {
     res.status(400).json({
@@ -55,9 +58,7 @@ exports.getSlotById = async (req, res) => {
 
     res.status(200).json({
       status: "success",
-      data: {
-        slot,
-      },
+      slot,
     });
   } catch (error) {
     res.status(400).json({

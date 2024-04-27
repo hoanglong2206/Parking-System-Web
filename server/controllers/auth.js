@@ -32,9 +32,7 @@ const createSendToken = (user, statusCode, res) => {
     status: "success",
     token,
     timeExpire: cookieOptions.expires.getTime(),
-    data: {
-      user,
-    },
+    user,
     message: "Login successfully!",
   });
 };
@@ -51,9 +49,7 @@ exports.register = async (req, res) => {
     newUser.password = undefined;
     res.status(201).json({
       status: "success",
-      data: {
-        user: newUser,
-      },
+      user: newUser,
       message: "User created successfully!",
     });
   } catch (err) {
