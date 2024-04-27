@@ -8,9 +8,7 @@ exports.getAreas = async (_req, res) => {
     res.status(200).json({
       status: "success",
       results: areas.length,
-      data: {
-        areas,
-      },
+      areas,
     });
   } catch (error) {
     res.status(400).json({
@@ -33,9 +31,7 @@ exports.getArea = async (req, res) => {
 
     res.status(200).json({
       status: "success",
-      data: {
-        area,
-      },
+      area,
     });
   } catch (error) {
     res.status(400).json({
@@ -51,7 +47,6 @@ exports.createArea = async (req, res) => {
 
     const slots = [];
     for (let i = 1; i <= newArea.slot; i++) {
-      console.log(newArea.name + i);
       slots.push({ name: `${newArea.name}${i}`, area: newArea.id });
     }
 
@@ -59,9 +54,7 @@ exports.createArea = async (req, res) => {
 
     res.status(201).json({
       status: "success",
-      data: {
-        area: newArea,
-      },
+      area: newArea,
       message: "Area created successfully!",
     });
   } catch (error) {
@@ -92,9 +85,7 @@ exports.updateArea = async (req, res) => {
 
     res.status(200).json({
       status: "success",
-      data: {
-        area,
-      },
+      area,
       message: "Area updated successfully!",
     });
   } catch (error) {

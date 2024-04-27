@@ -11,6 +11,12 @@ router.get("/logout", authController.logout);
 router.use(authController.protect);
 
 router.get("/me", userController.getMe, userController.getUser);
+router.patch(
+  "/updateMe",
+  userController.uploadUserPhoto,
+  userController.getImageUser,
+  userController.updateMe
+);
 
 router
   .route("/")
