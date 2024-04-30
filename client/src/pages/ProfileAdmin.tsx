@@ -135,7 +135,7 @@ const ProfileAdmin = () => {
                         onClick={() => {
                           const formData = new FormData();
                           if (avatar) {
-                            formData.append("file", avatar);
+                            formData.append("photo", avatar);
                           }
                           handleUpdateAvatar(formData);
                         }}
