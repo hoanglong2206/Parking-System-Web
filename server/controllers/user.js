@@ -14,7 +14,6 @@ const filterObj = (obj, ...allowedFields) => {
 };
 
 const storage = multer.memoryStorage();
-
 const imageFilter = function (req, file, cb) {
   if (
     !file.originalname.match(
@@ -62,7 +61,7 @@ exports.updateMe = async (req, res) => {
       const uploadPromises = req.files.map((file) => {
         return new Promise((resolve, reject) => {
           const { originalname, buffer, fieldname } = file;
-          if (fieldname === "file") {
+          if (fieldname === "photo") {
             cloudinary.uploader
               .upload_stream(
                 {
