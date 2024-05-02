@@ -26,11 +26,6 @@ const socketIo = new Server(server, {
 socketIo.on("connection", (socket) => {
   console.log("New client connected" + socket.id);
 
-  socket.on("get-users", (data) => {
-    socket.join(data.id);
-    socket.to(data.id).emit("get-users", data);
-  });
-
   socket.on("disconnect", () => {
     console.log("Client disconnected");
   });

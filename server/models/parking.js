@@ -19,17 +19,25 @@ const parkingSchema = new mongoose.Schema(
       type: Date,
     },
     slot: {
-      type: mongoose.Schema.ObjectId,
-      ref: "Slot",
+      type: String,
+    },
+    area: {
+      type: String,
+    },
+    price: {
+      type: Number,
     },
     totalPayment: {
       type: Number,
       required: true,
       default: 0,
     },
+    updateAt: {
+      type: Date,
+    },
     status: {
       type: String,
-      enum: ["parking", "completed"],
+      enum: ["parking", "completed", "parked"],
       default: "parking",
     },
   },
@@ -40,7 +48,7 @@ const parkingSchema = new mongoose.Schema(
 );
 
 parkingSchema.pre(/^find/, function (next) {
-  this.populate("slot");
+  this.sort({ updateAt: -1 });
   next();
 });
 

@@ -6,7 +6,7 @@ import {
   Register,
   Payment,
   Customer,
-  Allotment,
+  // Allotment,
   Equipments,
   ProfileAdmin,
   Messages,
@@ -88,11 +88,11 @@ function App() {
           }
         >
           <Route index element={<Dashboard />} />
-          <Route path="allotment" element={<Allotment />} />
-          <Route path="allotment/:locationId" element={<Area />} />
-          <Route path="allotment/:locationId/:areaId" element={<Slot />} />
+          {/* <Route path="allotment" element={<Allotment />} /> */}
+          <Route path="allotment" element={<Area />} />
+          <Route path="allotment/area/:areaId" element={<Slot />} />
           <Route
-            path="allotment/:locationId/:areaId/:slotId"
+            path="allotment/area/:areaId/slot/:slotId"
             element={<SlotDetail />}
           />
           <Route path="payment" element={<Payment />} />

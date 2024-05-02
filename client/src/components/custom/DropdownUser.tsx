@@ -37,7 +37,7 @@ const DropdownUser = () => {
       dispatch(hideLoader());
       if (res.data.status === "success") {
         dispatch(logout());
-        navigate("/");
+        navigate("/auth/login");
       }
     } catch (error: any) {
       dispatch(hideLoader());

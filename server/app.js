@@ -11,7 +11,7 @@ const app = express();
 const userRoute = require("./routes/user");
 const areaRoute = require("./routes/area");
 const slotRoute = require("./routes/slot");
-const notificationRoute = require("./routes/notification");
+// const notificationRoute = require("./routes/notification");
 const parkingRoute = require("./routes/parking");
 
 app.use(morgan("dev"));
@@ -42,7 +42,7 @@ app.use(function (req, _res, next) {
 app.use("/api/user", userRoute);
 app.use("/api/area", areaRoute);
 app.use("/api/slot", slotRoute);
-app.use("/api/notification", notificationRoute);
+// app.use("/api/notification", notificationRoute);
 app.use("/api/parking", parkingRoute);
 
 // app.use(express.static(path.join(__dirname, "../client/src/assets")));

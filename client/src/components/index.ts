@@ -12,6 +12,7 @@ export { default as Footer } from "@/components/custom/Footer";
 export { default as Banner } from "@/components/custom/Banner";
 export { default as ContentHome } from "@/components/custom/ContentHome";
 export { default as Container } from "@/components/custom/Container";
+export { default as CustomModal } from "@/components/custom/CustomModal";
 
 export { default as Overview } from "@/components/custom/Overview";
 export { default as Analytics } from "@/components/custom/Analytics";
@@ -35,7 +36,6 @@ export { default as LocationList } from "@/components/custom/LocationList";
 export { default as LocationItem } from "@/components/custom/LocationItem";
 export { default as AreaList } from "@/components/custom/AreaList";
 export { default as AreaItem } from "@/components/custom/AreaItem";
-export { default as AreaModal } from "@/components/custom/AreaModal";
 export { default as SlotList } from "@/components/custom/SlotList";
 export { default as CarSlotItem } from "@/components/custom/CarSlotItem";
 export { default as CarSlotList } from "@/components/custom/CarSlotList";

@@ -8,9 +8,7 @@ exports.getSlots = async (_req, res) => {
     res.status(200).json({
       status: "success",
       results: slots.length,
-      data: {
-        slots,
-      },
+      slots,
     });
   } catch (error) {
     res.status(400).json({

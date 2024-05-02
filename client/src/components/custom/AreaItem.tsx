@@ -9,7 +9,7 @@ interface AreaItemProps {
 const AreaItem = ({ data }: AreaItemProps) => {
   return (
     <Link
-      to={`${data.id}`}
+      to={`area/${data.id}`}
       className="bg-white dark:bg-slate-800 rounded-md shadow-sm border border-slate-200 dark:border-slate-700 flex flex-col justify-between gap-y-2 cursor-pointer hover:opacity-70 transition duration-300 ease-in-out px-4 py-2 h-20"
     >
       <div className="flex items-center justify-between">

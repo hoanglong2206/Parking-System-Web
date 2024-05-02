@@ -35,6 +35,12 @@ const userSchema = new mongoose.Schema(
       type: Date,
       default: Date.now(),
     },
+    // notification: [
+    //   {
+    //     type: mongoose.Schema.ObjectId,
+    //     ref: "Notification",
+    //   },
+    // ],
     password: {
       type: String,
       required: [true, "Please provide a password"],
@@ -90,6 +96,19 @@ userSchema.pre(/^find/, function (next) {
   this.sort({ createAt: -1 }).find({ active: { $ne: false } });
   next();
 });
+
+// userSchema.virtual("notificationCount").get(function () {
+//   return this.notification.length;
+// });
+
+// userSchema.pre(/^find/, function (next) {
+//   this.populate({
+//     path: "notification",
+//     select: "title",
+//   });
+
+//   next();
+// });
 
 userSchema.methods.correctPassword = async function (
   currentPassword,

@@ -1,12 +1,12 @@
 const Notification = require("../models/notification");
+const User = require("../models/user");
 
-exports.getNotifications = async (_req, res) => {
+exports.getNotifications = async (req, res) => {
   try {
-    const notifications = await Notification.find();
+    const notifications = await Notification.find({ receiver: req.user._id });
 
     res.status(200).json({
       status: "success",
-      results: notifications.length,
       notifications,
     });
   } catch (error) {
@@ -21,7 +21,10 @@ exports.getNotification = async (req, res) => {
   try {
     let notification;
     if (req.params.id.match(/^[0-9a-fA-F]{24}$/)) {
-      notification = await Notification.findById(req.params.id);
+      notification = await Notification.findOne({
+        _id: req.params.id,
+        receiver: req.user._id,
+      });
     }
 
     if (!notification) {
@@ -44,7 +47,10 @@ exports.updateNotification = async (req, res) => {
   try {
     let notification;
     if (req.params.id.match(/^[0-9a-fA-F]{24}$/)) {
-      notification = await Notification.findById(req.params.id);
+      notification = await Notification.findOne({
+        _id: req.params.id,
+        receiver: req.user._id,
+      });
     }
 
     if (!notification) {
@@ -71,16 +77,54 @@ exports.deleteNotification = async (req, res) => {
   try {
     let notification;
     if (req.params.id.match(/^[0-9a-fA-F]{24}$/)) {
-      notification = await Notification.findById(req.params.id);
+      notification = await Notification.findOne({
+        _id: req.params.id,
+        receiver: req.user._id,
+      });
     }
 
     if (!notification) {
       throw new Error("Notification not found!");
     }
 
-    await notification.remove();
+    const user = await User.findById(req.user._id);
 
-    res.status(204).json({
+    if (!user.notification.includes(req.params.id)) {
+      throw new Error("You are not authorized to delete this notification!");
+    }
+
+    await user.updateOne({ $pull: { notification: req.params.id } });
+
+    await notification.deleteOne({
+      _id: req.params.id,
+      receiver: req.user._id,
+    });
+
+    res.status(200).json({
+      status: "success",
+      data: null,
+    });
+  } catch (error) {
+    res.status(400).json({
+      status: "error",
+      message: error.message,
+    });
+  }
+};
+
+exports.deleteAllNotifications = async (req, res) => {
+  try {
+    const user = await User.findById(req.user._id);
+
+    if (user.notification.length === 0) {
+      throw new Error("You do not have any notifications!");
+    }
+
+    await user.updateOne({ $set: { notification: [] } });
+
+    await Notification.deleteMany({ receiver: req.user._id });
+
+    res.status(200).json({
       status: "success",
       data: null,
     });

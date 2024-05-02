@@ -130,9 +130,7 @@ exports.getUser = async (req, res) => {
     user.passwordResetExpires = undefined;
     res.status(200).json({
       status: "success",
-      data: {
-        user,
-      },
+      user,
     });
   } catch (err) {
     res.status(400).json({
