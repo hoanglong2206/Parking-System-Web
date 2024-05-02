@@ -56,7 +56,7 @@ const CarSlotType1 = ({ data }: { data: Slot[] }) => {
           {Array.from({ length: 3 }, (_, index) => (
             <div key={index}>
               <Separator />
-              <div className="flex h-[68px] items-center gap-x-2">
+              <div className="flex h-[68px] items-center gap-x-1">
                 <CarSlotItem data={data[index + 10]} direction="front" />
                 <Separator orientation="vertical" />
                 <CarSlotItem data={data[index + 10 + 3]} direction="back" />
@@ -69,7 +69,7 @@ const CarSlotType1 = ({ data }: { data: Slot[] }) => {
           {Array.from({ length: 3 }, (_, index) => (
             <div key={index}>
               <Separator />
-              <div className="flex h-[68px] items-center gap-x-2">
+              <div className="flex h-[68px] items-center gap-x-1">
                 <CarSlotItem data={data[index + 16]} direction="front" />
                 <Separator orientation="vertical" />
                 <CarSlotItem data={data[index + 16 + 3]} direction="back" />

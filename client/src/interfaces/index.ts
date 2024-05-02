@@ -22,5 +22,19 @@ export interface Slot {
   id: string;
   name: string;
   area: Area;
-  status: "booked" | "available" | "unavailable";
+  parking: Parking | null;
+  status: "available" | "unavailable";
+}
+
+export interface Parking {
+  id: string;
+  plate: string;
+  imageIn: string;
+  imageOut: string | null;
+  checkIn: string;
+  checkOut: string | null;
+  slot: string | null;
+  area: string | null;
+  totalPayment: number;
+  status: "parking" | "completed" | "parked";
 }

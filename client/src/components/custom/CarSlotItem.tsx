@@ -1,5 +1,5 @@
 import { frontCar, backCar, leftCar, rightCar } from "@/assets/car";
-// import { useNavigate, NavigateFunction } from "react-router-dom";
+import { useNavigate, NavigateFunction } from "react-router-dom";
 import { Button } from "../ui/button";
 import { Slot } from "@/interfaces";
 import { useLayoutEffect, useState } from "react";
@@ -12,10 +12,7 @@ interface CarSlotItemProps {
 const CarSlotItem = ({ data, direction }: CarSlotItemProps) => {
   const [carDirection, setCarDirection] = useState<string>(frontCar);
   const [size, setSize] = useState<string>("w-[85px] h-[65px]");
-  // const navigate: NavigateFunction = useNavigate();
-  const handleClick = () => {
-    console.log(data);
-  };
+  const navigate: NavigateFunction = useNavigate();
 
   useLayoutEffect(() => {
     switch (direction) {
@@ -42,13 +39,11 @@ const CarSlotItem = ({ data, direction }: CarSlotItemProps) => {
   return (
     <Button
       variant={"ghost"}
-      onClick={handleClick}
+      onClick={() => navigate(`slot/${data?.id}`)}
       disabled={data?.status === "available"}
-      className={`flex p-0 items-center justify-center ${size} rounded-lg ${
-        data?.status === "booked"
-          ? "bg-emerald-400 hover:bg-emerald-500"
-          : "bg-gray-200 hover:bg-gray-300 "
-      }  ${data?.status === "unavailable" ? "disabled:opacity-70" : ""}`}
+      className={`flex p-0 items-center justify-center ${size} rounded-lg bg-gray-200 hover:bg-gray-300 ${
+        data?.status === "unavailable" ? "disabled:opacity-70" : ""
+      }`}
     >
       {data?.status === "unavailable" ? (
         <img src={carDirection} width={80} alt="" />
@@ -68,3 +63,9 @@ const CarSlotItem = ({ data, direction }: CarSlotItemProps) => {
 };
 
 export default CarSlotItem;
+
+// ${
+//   data?.status === "booked"
+//     ? "bg-emerald-400 hover:bg-emerald-500"
+//     : "bg-gray-200 hover:bg-gray-300 "
+// }

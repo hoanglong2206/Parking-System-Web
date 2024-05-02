@@ -1,30 +1,36 @@
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Bike, Car, RectangleHorizontal, Trash2, Truck } from "lucide-react";
+import {
+  Bike,
+  Car,
+  RectangleHorizontal,
+  // Trash2,
+  Truck,
+} from "lucide-react";
 import { CarSlotList } from "@/components";
-import { Button } from "@/components/ui/button";
+// import { Button } from "@/components/ui/button";
 import { Slot } from "@/interfaces";
-import customAxios from "@/utils/customAxios";
-import { toast } from "react-toastify";
-import { useNavigate, NavigateFunction } from "react-router-dom";
+// import customAxios from "@/utils/customAxios";
+// import { toast } from "react-toastify";
+// import { useNavigate, NavigateFunction } from "react-router-dom";
 
 interface SlotListProps {
   carData: Slot[];
 }
 
 const SlotList = ({ carData }: SlotListProps) => {
-  const navigate: NavigateFunction = useNavigate();
+  // const navigate: NavigateFunction = useNavigate();
 
-  const handleDeleteArea = async () => {
-    try {
-      const response = await customAxios.delete(`/area/${carData[0].area.id}`);
-      if (response.data.status === "success") {
-        toast.success(response.data.message);
-        navigate("/admin/allotment/1/");
-      }
-    } catch (error: any) {
-      toast.error(error.response.data.message);
-    }
-  };
+  // const handleDeleteArea = async () => {
+  //   try {
+  //     const response = await customAxios.delete(`/area/${carData[0].area.id}`);
+  //     if (response.data.status === "success") {
+  //       toast.success(response.data.message);
+  //       navigate("/admin/allotment/");
+  //     }
+  //   } catch (error: any) {
+  //     toast.error(error.response.data.message);
+  //   }
+  // };
   return (
     <Tabs defaultValue="cars" className="space-y-4">
       <div className="flex items-center justify-between">
@@ -42,14 +48,14 @@ const SlotList = ({ carData }: SlotListProps) => {
             Trucks
           </TabsTrigger>
         </TabsList>
-        <Button
+        {/* <Button
           onClick={handleDeleteArea}
           variant={"destructive"}
           size={"icon"}
           className="flex items-center justify-center"
         >
           <Trash2 className="w-5 h-5" />
-        </Button>
+        </Button> */}
       </div>
       <TabsContent value="cars">
         <div className="grid grid-cols-5 gap-x-5 ">

@@ -15,10 +15,9 @@ const notificationSchema = new mongoose.Schema(
       enum: ["unread", "read"],
       default: "unread",
     },
-    sender: {
+    receiver: {
       type: mongoose.Schema.ObjectId,
-      ref: "Parking",
-      required: true,
+      ref: "User",
     },
     createdAt: {
       type: Date,
@@ -32,7 +31,7 @@ const notificationSchema = new mongoose.Schema(
 );
 
 notificationSchema.pre(/^find/, function (next) {
-  this.populate("sender");
+  this.sort({ createdAt: -1 });
   next();
 });
 

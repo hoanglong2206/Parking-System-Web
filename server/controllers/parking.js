@@ -1,6 +1,6 @@
 const Parking = require("../models/parking");
-const Notification = require("../models/notification");
 const Slot = require("../models/slot");
+// const User = require("../models/user");
 const cloudinary = require("cloudinary").v2;
 const { differenceInHours } = require("date-fns");
 const multer = require("multer");
@@ -81,9 +81,9 @@ exports.createParking = async (req, res) => {
 
     const { lp_part1, lp_part2 } = req.body;
     const plate = `${lp_part1}-${lp_part2}`;
-    const isParkingExist = await Parking.findOne({ plate });
+    const existingParking = await Parking.findOne({ plate, status: "parking" });
 
-    if (isParkingExist) {
+    if (existingParking) {
       throw new Error("Parking already exist!");
     }
 
@@ -96,7 +96,9 @@ exports.createParking = async (req, res) => {
               .upload_stream(
                 {
                   folder: "parking",
-                  public_id: originalname.split(".")[0],
+                  public_id: `${new Date().getTime()}_${
+                    originalname.split(".")[0]
+                  }`,
                   resource_type: "image",
                 },
                 (error, result) => {
@@ -110,6 +112,7 @@ exports.createParking = async (req, res) => {
                 }
               )
               .end(buffer);
+            console.log(originalname);
           }
         });
       });
@@ -121,6 +124,7 @@ exports.createParking = async (req, res) => {
       plate,
       imageIn: req.body.image,
       checkIn: new Date(),
+      updateAt: new Date(),
     });
     res.status(201).json({
       status: "success",
@@ -143,7 +147,7 @@ exports.updateParkingCheckOut = async (req, res) => {
 
     const { lp_part1, lp_part2 } = req.body;
     const plate = `${lp_part1}-${lp_part2}`;
-    const parking = await Parking.findOne({ plate });
+    const parking = await Parking.findOne({ plate, status: "parked" });
 
     if (!parking) {
       throw new Error("Parking not found!");
@@ -158,7 +162,9 @@ exports.updateParkingCheckOut = async (req, res) => {
               .upload_stream(
                 {
                   folder: "parking",
-                  public_id: originalname.split(".")[0],
+                  public_id: `${new Date().getTime()}_${
+                    originalname.split(".")[0]
+                  }`,
                   resource_type: "image",
                 },
                 (error, result) => {
@@ -172,6 +178,8 @@ exports.updateParkingCheckOut = async (req, res) => {
                 }
               )
               .end(buffer);
+
+            console.log(originalname);
           }
         });
       });
@@ -185,21 +193,40 @@ exports.updateParkingCheckOut = async (req, res) => {
       new Date(parking.checkIn)
     );
 
-    if (hours < 0) {
+    if (hours <= 0) {
       hours = 1;
     }
 
+    console.log(hours);
+
+    // const admin = await User.findOne({ role: "admin" });
+
     parking.imageOut = req.body.image;
     parking.checkOut = checkOut;
-    parking.totalPayment = hours * parking.slot?.area.price;
+    parking.totalPayment = hours * parking.price;
+    parking.status = "completed";
+    parking.updateAt = new Date();
 
     await parking.save();
-    await Slot.findByIdAndUpdate(parking.slot, { status: "available" });
-    await Notification.create({
-      title: "Parking Payment",
-      description: `${parking.plate} has been paid with total payment ${parking.totalPayment}!`,
-      sender: parking.id,
-    });
+    await Slot.findOneAndUpdate(
+      {
+        name: parking.slot,
+      },
+      {
+        parking: null,
+        status: "available",
+      }
+    );
+    // const notification = await Notification.create({
+    //   title: "Parking Payment",
+    //   description: `${parking.plate} has been paid with total payment ${parking.totalPayment}!`,
+    //   receiver: admin.id,
+    // });
+
+    // await admin.updateOne(
+    //   { $push: { notification: notification.id } },
+    //   { runValidators: true }
+    // );
 
     res.status(201).json({
       status: "success",
@@ -216,8 +243,12 @@ exports.updateParkingSlot = async (req, res) => {
   try {
     const { lp_part1, lp_part2, slot } = req.body;
     const plate = `${lp_part1}-${lp_part2}`;
-    const parking = await Parking.findOne({ plate });
+    const parking = await Parking.findOne({
+      plate,
+      status: "parking",
+    });
     const slotData = await Slot.findOne({ name: slot });
+    // const admin = await User.findOne({ role: "admin" });
 
     if (!parking) {
       throw new Error("Parking not found!");
@@ -231,15 +262,27 @@ exports.updateParkingSlot = async (req, res) => {
       throw new Error("Parking already have slot!");
     }
 
-    parking.slot = slotData.id;
+    parking.slot = slotData.name;
+    parking.area = slotData.area.name;
+    parking.price = slotData.area.price;
+    parking.status = "parked";
+    parking.updateAt = new Date();
 
-    (await parking.save()).populate("slot");
-    await Slot.findByIdAndUpdate(slotData.id, { status: "unavailable" });
-    await Notification.create({
-      title: "Parking Slot",
-      description: `${parking.plate} has been parked in ${slotData.name}!`,
-      sender: parking.id,
+    await parking.save();
+    await Slot.findByIdAndUpdate(slotData.id, {
+      parking: parking.id,
+      status: "unavailable",
     });
+    // const notification = await Notification.create({
+    //   title: "Parking Slot",
+    //   description: `${parking.plate} has been parked in ${slotData.name}!`,
+    //   receiver: admin.id,
+    // });
+
+    // await admin.updateOne(
+    //   { $push: { notification: notification.id } },
+    //   { runValidators: true }
+    // );
 
     res.status(201).json({
       status: "success",

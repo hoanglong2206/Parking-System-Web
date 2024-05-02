@@ -29,82 +29,11 @@ import {
 import { ChevronDown } from "lucide-react";
 import { columnsManagement, Management } from "@/components/";
 
-const data: Management[] = [
-  {
-    id: "m5gr84i9",
-    license_plate: "51B-123",
-    checkIn: "2024-02-01T08:00:00.000Z",
-    checkOut: "2024-02-01T12:00:00.000Z",
-    slot: "A1",
-    status: "success",
-  },
-  {
-    id: "3u1reuv4",
-    license_plate: "51B-123",
-    checkIn: "2024-03-03T12:00:00.000Z",
-    checkOut: "2024-03-03T14:00:00.000Z",
-    slot: "A2",
-    status: "success",
-  },
-  {
-    id: "derv1ws0",
-    license_plate: "51B-1232",
-    checkIn: "2024-01-01T08:00:00.000Z",
-    checkOut: null,
-    slot: "A12",
-    status: "pending",
-  },
-  {
-    id: "2v3d4f5",
-    license_plate: "51A-1232",
-    checkIn: "2024-03-01T09:00:00.000Z",
-    checkOut: "2024-03-01T12:00:00.000Z",
-    slot: "A20",
-    status: "success",
-  },
-  {
-    id: "a1v2d3f4",
-    license_plate: "51C-123",
-    checkIn: "2024-02-11T13:00:00.000Z",
-    checkOut: "2024-02-11T15:00:00.000Z",
-    slot: "A32",
-    status: "success",
-  },
-  {
-    id: "v1d2f3g4",
-    license_plate: "68A-12322",
-    checkIn: "2024-04-01T08:00:00.000Z",
-    checkOut: null,
-    slot: "A7",
-    status: "pending",
-  },
-  {
-    id: "v1d2f3g4",
-    license_plate: "51B-123",
-    checkIn: "2024-10-01T08:00:00.000Z",
-    checkOut: null,
-    slot: "A6",
-    status: "pending",
-  },
-  {
-    id: "p1o2i3u4",
-    license_plate: "51B-123",
-    checkIn: "2024-10-01T08:00:00.000Z",
-    checkOut: null,
-    slot: "A5",
-    status: "pending",
-  },
-  {
-    id: "m1n2b3v4",
-    license_plate: "51B-123",
-    checkIn: "2024-10-01T08:00:00.000Z",
-    checkOut: "2024-10-01T12:00:00.000Z",
-    slot: "A12",
-    status: "success",
-  },
-];
+interface ManagementTableProps {
+  data: Management[];
+}
 
-const ManagementTable = () => {
+const ManagementTable = ({ data }: ManagementTableProps) => {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -146,10 +75,10 @@ const ManagementTable = () => {
     <div className="w-full">
       <div className="flex items-center py-4 gap-x-4">
         <Input
-          placeholder="Filter emails..."
-          value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
+          placeholder="Filter by license plate"
+          value={(table.getColumn("plate")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
-            table.getColumn("email")?.setFilterValue(event.target.value)
+            table.getColumn("plate")?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />

@@ -3,39 +3,42 @@ import { Separator } from "@/components/ui/separator";
 import { useState, useEffect } from "react";
 import { Area } from "@/interfaces";
 import customAxios from "@/utils/customAxios";
-import { AreaList, AreaModal } from "@/components";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { toast } from "react-toastify";
+import {
+  AreaList,
+  //  CustomModal
+} from "@/components";
+// import { Label } from "@/components/ui/label";
+// import { Input } from "@/components/ui/input";
+// import { Button } from "@/components/ui/button";
+// import { toast } from "react-toastify";
 
 const AreaPage = () => {
   const [areas, setAreas] = useState<Area[]>([]);
-  const [open, setOpen] = useState<boolean>(false);
+  // const [open, setOpen] = useState<boolean>(false);
 
-  const handleCreateArea = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const areaName = formData.get("areaName");
-    const areaSlot = formData.get("areaSlot");
-    const areaFloors = formData.get("areaFloors");
-    const areaPrice = formData.get("areaPrice");
-    try {
-      const response = await customAxios.post("/area/", {
-        name: areaName,
-        slot: areaSlot,
-        floors: areaFloors,
-        price: areaPrice,
-      });
-      if (response.data.status === "success") {
-        setOpen(false);
-        setAreas((prev) => [...prev, response.data.area]);
-        toast.success(response.data.message);
-      }
-    } catch (error: any) {
-      toast.error(error.response.data.message);
-    }
-  };
+  // const handleCreateArea = async (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+  //   const formData = new FormData(e.currentTarget);
+  //   const areaName = formData.get("areaName");
+  //   const areaSlot = formData.get("areaSlot");
+  //   const areaFloors = formData.get("areaFloors");
+  //   const areaPrice = formData.get("areaPrice");
+  //   try {
+  //     const response = await customAxios.post("/area/", {
+  //       name: areaName,
+  //       slot: areaSlot,
+  //       floors: areaFloors,
+  //       price: areaPrice,
+  //     });
+  //     if (response.data.status === "success") {
+  //       setOpen(false);
+  //       setAreas((prev) => [...prev, response.data.area]);
+  //       toast.success(response.data.message);
+  //     }
+  //   } catch (error: any) {
+  //     toast.error(error.response.data.message);
+  //   }
+  // };
 
   useEffect(() => {
     const fetchAreas = async () => {
@@ -69,10 +72,10 @@ const AreaPage = () => {
         </div>
         <Separator className="my-4" />
         <div className="px-2 md:px-4">
-          <AreaList data={areas} setOpen={setOpen} />
+          <AreaList data={areas} />
         </div>
       </div>
-      <AreaModal open={open} onClose={() => setOpen(false)}>
+      {/* <CustomModal open={open} onClose={() => setOpen(false)}>
         <div className="w-full">
           <h2 className="text-2xl font-semibold tracking-wider">Create Area</h2>
           <hr className="my-3" />
@@ -131,7 +134,7 @@ const AreaPage = () => {
             </Button>
           </form>
         </div>
-      </AreaModal>
+      </CustomModal> */}
     </>
   );
 };

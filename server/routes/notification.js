@@ -6,25 +6,10 @@ const router = express.Router();
 
 router.use(authController.protect);
 
-router.get(
-  "/",
-  authController.restrictTo("admin"),
-  notificationController.getNotifications
-);
-router.get(
-  "/:id",
-  authController.restrictTo("admin"),
-  notificationController.getNotification
-);
-router.patch(
-  "/:id",
-  authController.restrictTo("admin"),
-  notificationController.updateNotification
-);
-router.delete(
-  "/:id",
-  authController.restrictTo("admin"),
-  notificationController.deleteNotification
-);
+router.get("/", notificationController.getNotifications);
+router.get("/:id", notificationController.getNotification);
+router.patch("/:id", notificationController.updateNotification);
+router.delete("/:id", notificationController.deleteNotification);
+router.delete("/", notificationController.deleteAllNotifications);
 
 module.exports = router;
