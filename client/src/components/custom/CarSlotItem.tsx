@@ -40,7 +40,7 @@ const CarSlotItem = ({ data, direction }: CarSlotItemProps) => {
     <Button
       variant={"ghost"}
       onClick={() => navigate(`slot/${data?.id}`)}
-      disabled={data?.status === "available"}
+      disabled
       className={`flex p-0 items-center justify-center ${size} rounded-lg bg-gray-200 hover:bg-gray-300 ${
         data?.status === "unavailable" ? "disabled:opacity-70" : ""
       }`}

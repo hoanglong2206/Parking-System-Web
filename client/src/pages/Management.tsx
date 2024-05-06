@@ -9,11 +9,11 @@ import {
 import { Parking } from "@/interfaces";
 import customAxios from "@/utils/customAxios";
 import { useEffect, useState } from "react";
+
 const Management = () => {
   const [data, setData] = useState<ParkingManagement[]>([]);
-
   useEffect(() => {
-    const fetchManagement = async () => {
+    const fetchData = async () => {
       try {
         const parkings: ParkingManagement[] = [];
         const res = await customAxios.get("/parking/");
@@ -23,12 +23,13 @@ const Management = () => {
 
         setData(parkings);
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     };
 
-    fetchManagement();
+    fetchData();
   }, []);
+
   return (
     <Card>
       <CardHeader>

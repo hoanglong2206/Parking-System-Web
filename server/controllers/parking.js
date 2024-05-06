@@ -128,6 +128,7 @@ exports.createParking = async (req, res) => {
     });
     res.status(201).json({
       status: "success",
+      message: "Parking check in!",
     });
   } catch (error) {
     res.status(400).json({
@@ -147,7 +148,7 @@ exports.updateParkingCheckOut = async (req, res) => {
 
     const { lp_part1, lp_part2 } = req.body;
     const plate = `${lp_part1}-${lp_part2}`;
-    const parking = await Parking.findOne({ plate, status: "parked" });
+    const parking = await Parking.findOne({ plate, status: "parking" });
 
     if (!parking) {
       throw new Error("Parking not found!");
@@ -203,20 +204,20 @@ exports.updateParkingCheckOut = async (req, res) => {
 
     parking.imageOut = req.body.image;
     parking.checkOut = checkOut;
-    parking.totalPayment = hours * parking.price;
+    parking.totalPayment = hours * 10;
     parking.status = "completed";
     parking.updateAt = new Date();
 
     await parking.save();
-    await Slot.findOneAndUpdate(
-      {
-        name: parking.slot,
-      },
-      {
-        parking: null,
-        status: "available",
-      }
-    );
+    // await Slot.findOneAndUpdate(
+    //   {
+    //     name: parking.slot,
+    //   },
+    //   {
+    //     parking: null,
+    //     status: "available",
+    //   }
+    // );
     // const notification = await Notification.create({
     //   title: "Parking Payment",
     //   description: `${parking.plate} has been paid with total payment ${parking.totalPayment}!`,
@@ -230,6 +231,7 @@ exports.updateParkingCheckOut = async (req, res) => {
 
     res.status(201).json({
       status: "success",
+      message: "Parking check out!",
     });
   } catch (error) {
     res.status(400).json({
@@ -239,58 +241,58 @@ exports.updateParkingCheckOut = async (req, res) => {
   }
 };
 
-exports.updateParkingSlot = async (req, res) => {
-  try {
-    const { lp_part1, lp_part2, slot } = req.body;
-    const plate = `${lp_part1}-${lp_part2}`;
-    const parking = await Parking.findOne({
-      plate,
-      status: "parking",
-    });
-    const slotData = await Slot.findOne({ name: slot });
-    // const admin = await User.findOne({ role: "admin" });
+// exports.updateParkingSlot = async (req, res) => {
+//   try {
+//     const { lp_part1, lp_part2, slot } = req.body;
+//     const plate = `${lp_part1}-${lp_part2}`;
+//     const parking = await Parking.findOne({
+//       plate,
+//       status: "parking",
+//     });
+//     const slotData = await Slot.findOne({ name: slot });
+//     // const admin = await User.findOne({ role: "admin" });
 
-    if (!parking) {
-      throw new Error("Parking not found!");
-    }
+//     if (!parking) {
+//       throw new Error("Parking not found!");
+//     }
 
-    if (!slotData) {
-      throw new Error("Slot not found!");
-    }
+//     if (!slotData) {
+//       throw new Error("Slot not found!");
+//     }
 
-    if (parking.slot) {
-      throw new Error("Parking already have slot!");
-    }
+//     if (parking.slot) {
+//       throw new Error("Parking already have slot!");
+//     }
 
-    parking.slot = slotData.name;
-    parking.area = slotData.area.name;
-    parking.price = slotData.area.price;
-    parking.status = "parked";
-    parking.updateAt = new Date();
+//     parking.slot = slotData.name;
+//     parking.area = slotData.area.name;
+//     parking.price = slotData.area.price;
+//     parking.status = "parked";
+//     parking.updateAt = new Date();
 
-    await parking.save();
-    await Slot.findByIdAndUpdate(slotData.id, {
-      parking: parking.id,
-      status: "unavailable",
-    });
-    // const notification = await Notification.create({
-    //   title: "Parking Slot",
-    //   description: `${parking.plate} has been parked in ${slotData.name}!`,
-    //   receiver: admin.id,
-    // });
+//     await parking.save();
+//     await Slot.findByIdAndUpdate(slotData.id, {
+//       parking: parking.id,
+//       status: "unavailable",
+//     });
+//     // const notification = await Notification.create({
+//     //   title: "Parking Slot",
+//     //   description: `${parking.plate} has been parked in ${slotData.name}!`,
+//     //   receiver: admin.id,
+//     // });
 
-    // await admin.updateOne(
-    //   { $push: { notification: notification.id } },
-    //   { runValidators: true }
-    // );
+//     // await admin.updateOne(
+//     //   { $push: { notification: notification.id } },
+//     //   { runValidators: true }
+//     // );
 
-    res.status(201).json({
-      status: "success",
-    });
-  } catch (error) {
-    res.status(400).json({
-      status: "error",
-      message: error.message,
-    });
-  }
-};
+//     res.status(201).json({
+//       status: "success",
+//     });
+//   } catch (error) {
+//     res.status(400).json({
+//       status: "error",
+//       message: error.message,
+//     });
+//   }
+// };

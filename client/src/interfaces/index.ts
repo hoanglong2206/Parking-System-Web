@@ -22,7 +22,6 @@ export interface Slot {
   id: string;
   name: string;
   area: Area;
-  parking: Parking | null;
   status: "available" | "unavailable";
 }
 
@@ -33,8 +32,8 @@ export interface Parking {
   imageOut: string | null;
   checkIn: string;
   checkOut: string | null;
-  slot: string | null;
-  area: string | null;
+  // slot: string | null;
+  // area: string | null;
   totalPayment: number;
-  status: "parking" | "completed" | "parked";
+  status: "parking" | "completed" | "pending";
 }
