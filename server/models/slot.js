@@ -12,10 +12,10 @@ const slotSchema = new mongoose.Schema(
       ref: "Area",
       required: true,
     },
-    parking: {
-      type: mongoose.Schema.ObjectId,
-      ref: "Parking",
-    },
+    // parking: {
+    //   type: mongoose.Schema.ObjectId,
+    //   ref: "Parking",
+    // },
     status: {
       type: String,
       enum: ["available", "unavailable"],
@@ -34,7 +34,7 @@ slotSchema.pre("save", function (next) {
 });
 
 slotSchema.pre(/^find/, function (next) {
-  this.populate("area").populate("parking");
+  this.populate("area");
   next();
 });
 

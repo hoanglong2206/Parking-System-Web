@@ -18,15 +18,15 @@ const parkingSchema = new mongoose.Schema(
     checkOut: {
       type: Date,
     },
-    slot: {
-      type: String,
-    },
-    area: {
-      type: String,
-    },
-    price: {
-      type: Number,
-    },
+    // slot: {
+    //   type: String,
+    // },
+    // area: {
+    //   type: String,
+    // },
+    // price: {
+    //   type: Number,
+    // },
     totalPayment: {
       type: Number,
       required: true,
@@ -37,7 +37,7 @@ const parkingSchema = new mongoose.Schema(
     },
     status: {
       type: String,
-      enum: ["parking", "completed", "parked"],
+      enum: ["parking", "completed", "pending"],
       default: "parking",
     },
   },

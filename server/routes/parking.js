@@ -16,7 +16,7 @@ router.patch(
   parkingController.updateParkingCheckOut
 );
 
-router.patch("/updateParkingSlot", parkingController.updateParkingSlot);
+// router.patch("/updateParkingSlot", parkingController.updateParkingSlot);
 router.get("/", parkingController.getParkings);
 router.get("/:id", parkingController.getParking);
 

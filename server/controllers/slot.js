@@ -65,3 +65,32 @@ exports.getSlotById = async (req, res) => {
     });
   }
 };
+
+// exports.updateSlot = async (req, res) => {
+//   try {
+//     const slot = await Slot.findOne({ name: req.body.slot });
+//     const { isParking } = req.body;
+
+//     if (!slot) {
+//       throw new Error("Slot not found!");
+//     }
+
+//     if (isParking) {
+//       slot.status = "unavailable";
+//     } else {
+//       slot.status = "available";
+//     }
+
+//     await slot.save();
+
+//     res.status(200).json({
+//       status: "success",
+//       message: "Slot updated successfully!",
+//     });
+//   } catch (error) {
+//     res.status(400).json({
+//       status: "error",
+//       message: error.message,
+//     });
+//   }
+// };

@@ -20,10 +20,10 @@ export type Management = {
   imageOut: string | null;
   checkIn: string;
   checkOut: string | null;
-  slot: string | null;
-  area: string | null;
+  // slot: string | null;
+  // area: string | null;
   totalPayment: number;
-  status: "parking" | "completed" | "parked";
+  status: "parking" | "completed" | "pending";
 };
 
 export const columnsManagement: ColumnDef<Management>[] = [
@@ -89,26 +89,26 @@ export const columnsManagement: ColumnDef<Management>[] = [
       </div>
     ),
   },
-  {
-    accessorKey: "slot",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          className="w-full ml-2"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Slot
-          <ChevronsUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
-    cell: ({ row }) => (
-      <div className="text-center font-medium">
-        {row.getValue("slot") || "N/A"}
-      </div>
-    ),
-  },
+  // {
+  //   accessorKey: "slot",
+  //   header: ({ column }) => {
+  //     return (
+  //       <Button
+  //         variant="ghost"
+  //         className="w-full ml-2"
+  //         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+  //       >
+  //         Slot
+  //         <ChevronsUpDown className="ml-2 h-4 w-4" />
+  //       </Button>
+  //     );
+  //   },
+  //   cell: ({ row }) => (
+  //     <div className="text-center font-medium">
+  //       {row.getValue("slot") || "N/A"}
+  //     </div>
+  //   ),
+  // },
   {
     accessorKey: "status",
     header: ({ column }) => {
@@ -186,9 +186,9 @@ export const columnsManagement: ColumnDef<Management>[] = [
                   <hr className="my-3 border-slate-200 dark:border-slate-700" />
                   <div className="flex flex-col gap-y-2">
                     <p className="text-base font-medium">
-                      Slot:
+                      Status:
                       <span className="ml-2 text-sm text-slate-400">
-                        {parking.slot || "N/A"}
+                        {parking.status}
                       </span>
                     </p>
                     {parking.checkOut ? (
