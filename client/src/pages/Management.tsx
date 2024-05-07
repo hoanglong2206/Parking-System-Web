@@ -9,8 +9,13 @@ import {
 import { Parking } from "@/interfaces";
 import customAxios from "@/utils/customAxios";
 import { useEffect, useState } from "react";
+import { Socket } from "socket.io-client";
 
-const Management = () => {
+interface ManagementProps {
+  socket: Socket;
+}
+
+const Management = ({ socket }: ManagementProps) => {
   const [data, setData] = useState<ParkingManagement[]>([]);
   useEffect(() => {
     const fetchData = async () => {
@@ -29,6 +34,16 @@ const Management = () => {
 
     fetchData();
   }, []);
+
+  useEffect(() => {
+    socket.on("receiveParking", (data: ParkingManagement[]) => {
+      setData(data);
+    });
+
+    return () => {
+      socket.off("receiveParking");
+    };
+  }, [socket]);
 
   return (
     <Card>
