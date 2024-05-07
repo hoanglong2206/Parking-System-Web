@@ -31,6 +31,9 @@ import { useEffect } from "react";
 import { logout } from "@/context/slices/auth";
 import { Button } from "./components/ui/button";
 import { MessageSquare } from "lucide-react";
+import io, { Socket } from "socket.io-client";
+
+const socket: Socket = io("http://localhost:3000");
 
 function App() {
   const user = useSelector((state: RootState) => state.auth);
@@ -90,14 +93,17 @@ function App() {
           <Route index element={<Dashboard />} />
           {/* <Route path="allotment" element={<Allotment />} /> */}
           <Route path="allotment" element={<Area />} />
-          <Route path="allotment/area/:areaId" element={<Slot />} />
+          <Route
+            path="allotment/area/:areaId"
+            element={<Slot socket={socket} />}
+          />
           <Route
             path="allotment/area/:areaId/slot/:slotId"
             element={<SlotDetail />}
           />
           <Route path="payment" element={<Payment />} />
           <Route path="customer" element={<Customer />} />
-          <Route path="management" element={<Management />} />
+          <Route path="management" element={<Management socket={socket} />} />
           <Route path="blog" element={<BlogManagement />} />
           <Route path="equipment" element={<Equipments />} />
           <Route path="messages" element={<Messages />} />

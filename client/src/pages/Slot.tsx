@@ -6,8 +6,13 @@ import { useParams } from "react-router-dom";
 import { Area, Slot } from "@/interfaces";
 import { SlotList } from "@/components";
 import { toast } from "react-toastify";
+import { Socket } from "socket.io-client";
 
-const SlotPage = () => {
+interface SlotPageProps {
+  socket: Socket;
+}
+
+const SlotPage = ({ socket }: SlotPageProps) => {
   const [area, setArea] = useState<Area>({
     id: "",
     name: "",
@@ -50,6 +55,18 @@ const SlotPage = () => {
     getSlots();
     gethArea();
   }, [areaId]);
+
+  useEffect(() => {
+    const sortAlphaNum = (a: string, b: string) =>
+      a.localeCompare(b, "en", { numeric: true });
+    socket.on("receiveSlot", (data: Slot[]) => {
+      setData(data.sort((a: Slot, b: Slot) => sortAlphaNum(a.name, b.name)));
+    });
+
+    return () => {
+      socket.off("receiveSlot");
+    };
+  }, [socket]);
 
   return (
     <div className="w-full">
